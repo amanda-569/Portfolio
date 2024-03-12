@@ -1,0 +1,6 @@
+<article id="tags">
+  <h3>Tags</h3>
+  <div *ngFor="let tag of tags" (click)="setTagFilter(tag)">
+    {{ tag.name }}
+  </div>
+</article>

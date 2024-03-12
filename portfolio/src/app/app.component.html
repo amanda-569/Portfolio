@@ -1,0 +1,84 @@
+<header>
+  <h1>{{ title }}</h1>
+  <nav>
+    <ul>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ariaCurrentWhenActive="page"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/minifigs"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ariaCurrentWhenActive="page"
+          >Minifigs</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/categories"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ariaCurrentWhenActive="page"
+          >Categories</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/tags"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Tags</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section id="side-nav">
+    <article *ngIf="categoryFilter || tagFilter">
+      <h2>Filter:</h2>
+      <div class="current-filter" (click)="clearFilters()">
+        {{ categoryFilter?.name || tagFilter?.name }}
+        <i class="bi bi-trash"></i>
+      </div>
+    </article>
+    <article id="categories">
+      <app-categories
+        [categoryFilter]="categoryFilter"
+        (newCategoryFilterEvent)="setCategoryFilter($event)"
+      ></app-categories>
+    </article>
+    <article id="tags">
+      <app-tags
+        [tagFilter]="tagFilter"
+        (newTagFilterEvent)="setTagFilter($event)"
+      ></app-tags>
+    </article>
+  </section>
+  <router-outlet></router-outlet>
+  <!--   
+  <section id="minifigs" *ngIf="!selectedMinifig">
+    <app-minifigs
+      [themeFilter]="themeFilter"
+      (newThemeFilterEvent)="setThemeFilter($event)"
+      [tagFilter]="tagFilter"
+      (newTagFilterEvent)="setTagFilter($event)"
+      (newSelectedMinifigEvent)="setSelectedMinifig($event)"
+    ></app-minifigs>
+  </section>
+  <section id="minifig" *ngIf="selectedMinifig">
+    <button (click)="clearSelectedMinifig()">Back</button>
+    <app-minifig
+      [minifig]="selectedMinifig"
+      [minifig]="selectedMinifig"
+    ></app-minifig>
+  </section> -->
+</main>
+<footer>&copy; {{ date.getFullYear() }} {{ author }}</footer>

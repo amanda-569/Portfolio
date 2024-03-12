@@ -1,0 +1,35 @@
+<section id="projects">
+  <article
+    *ngFor="let project of projects | projectFilter : tagFilter"
+    [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
+    (click)="setSelectedProject(project)"
+  >
+    <a href="/projects/{{ project?.id }}">
+      <section class="project-card">
+        <img
+          *ngIf="project.image"
+          [src]="'assets/images/' + project.image"
+          alt="Image of {{ project.title }}"
+        />
+        <div>
+          <h2>{{ project.title | uppercase }}</h2>
+          <div>{{ project.excerpt }}</div>
+        </div>
+      </section>
+    </a>
+    <footer>
+      <div *ngIf="project.category">
+        Category:
+        <a [href]="'/projects/categories/' + project.category.slug">{{
+          project.category.name
+        }}</a>
+      </div>
+      <div *ngIf="project.tags?.length">
+        Tags:
+        <span *ngFor="let tag of project.tags" (click)="setTagFilter(tag)">
+          {{ tag.name }}
+        </span>
+      </div>
+    </footer>
+  </article>
+</section>

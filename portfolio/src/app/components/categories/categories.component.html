@@ -1,0 +1,10 @@
+<h3>Categories</h3>
+<article id="categories">
+  <div
+    *ngFor="let category of categories"
+    [ngClass]="{ active: category.name === categoryFilter?.name }"
+    (click)="setCategoryFilter(category)"
+  >
+    {{ category.name }}
+  </div>
+</article>

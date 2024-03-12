@@ -1,0 +1,44 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.minifig-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+article {
+  width: 80%;
+  min-height: 10rem;
+  min-width: 15rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(220, 219, 218);
+
+  h2 {
+    margin: 0;
+  }
+
+  footer {
+    align-self: flex-start;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    background-color: #eee;
+    width: 100%;
+    span {
+      cursor: pointer;
+    }
+    div {
+      padding: 0.6rem;
+      justify-content: space-between;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
