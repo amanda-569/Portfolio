@@ -13,16 +13,16 @@
       </li>
       <li>
         <a
-          routerLink="/minifigs"
+          routerLink="/projects"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           ariaCurrentWhenActive="page"
-          >Minifigs</a
+          >Projects</a
         >
       </li>
       <li>
         <a
-          routerLink="/categories"
+          routerLink="projects/categories/:slug"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           ariaCurrentWhenActive="page"
@@ -31,7 +31,7 @@
       </li>
       <li>
         <a
-          routerLink="/tags"
+          routerLink="projects/tags/:slug"
           routerLinkActive="active"
           ariaCurrentWhenActive="page"
           >Tags</a
@@ -50,35 +50,18 @@
       </div>
     </article>
     <article id="categories">
-      <app-categories
-        [categoryFilter]="categoryFilter"
-        (newCategoryFilterEvent)="setCategoryFilter($event)"
-      ></app-categories>
+      <h3>Categories</h3>
+        <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]">
+          {{ category.name }}
+        </div>
     </article>
     <article id="tags">
-      <app-tags
-        [tagFilter]="tagFilter"
-        (newTagFilterEvent)="setTagFilter($event)"
-      ></app-tags>
+      <h3>Tags</h3>
+        <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]">
+          {{ tag.name }}
+        </div>
     </article>
   </section>
   <router-outlet></router-outlet>
-  <!--   
-  <section id="minifigs" *ngIf="!selectedMinifig">
-    <app-minifigs
-      [themeFilter]="themeFilter"
-      (newThemeFilterEvent)="setThemeFilter($event)"
-      [tagFilter]="tagFilter"
-      (newTagFilterEvent)="setTagFilter($event)"
-      (newSelectedMinifigEvent)="setSelectedMinifig($event)"
-    ></app-minifigs>
-  </section>
-  <section id="minifig" *ngIf="selectedMinifig">
-    <button (click)="clearSelectedMinifig()">Back</button>
-    <app-minifig
-      [minifig]="selectedMinifig"
-      [minifig]="selectedMinifig"
-    ></app-minifig>
-  </section> -->
 </main>
 <footer>&copy; {{ date.getFullYear() }} {{ author }}</footer>

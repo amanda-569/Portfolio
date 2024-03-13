@@ -15,10 +15,16 @@ export class ProjectService {
   getProject(id: number): Project {
     return PROJECTS.find((project) => project.id === id)!;
   }
-  getProjectsByTheme(slug: string): Observable<Project[]> {
+  getProjectsByCategory(slug: string): Observable<Project[]> {
     const projects = PROJECTS.filter(
       (project) => project.category?.slug === slug
     )!;
+    return of(projects);
+  }
+  getProjectsByTag(slug: string): Observable<Project[]> {
+    const projects = PROJECTS.filter(project =>
+      project.tags?.some(tag => tag.slug === slug)
+    );
     return of(projects);
   }
 }
