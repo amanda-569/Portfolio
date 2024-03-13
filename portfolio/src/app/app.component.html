@@ -51,13 +51,13 @@
     </article>
     <article id="categories">
       <h3>Categories</h3>
-        <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]">
+        <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]" (click)="setCategoryFilter(category)">
           {{ category.name }}
         </div>
     </article>
     <article id="tags">
       <h3>Tags</h3>
-        <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]">
+        <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]" (click)="setTagFilter(tag)">
           {{ tag.name }}
         </div>
     </article>
