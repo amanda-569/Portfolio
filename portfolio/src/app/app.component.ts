@@ -9,7 +9,9 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { TagsComponent } from './components/tags/tags.component';
 
 import { Category } from './models/category';
+import { CATEGORY } from './data/categories';
 import { Tag } from './models/tag';
+import { TAGS } from './data/tags';
 import { Project } from './models/project';
 
 import { ProjectFilterPipe } from './pipes/project-filter.pipe';
@@ -35,12 +37,14 @@ export class AppComponent {
   title = 'Portfolio';
   date = new Date();
   author = 'Amanda Mar';
-
+  categories: Category[] = CATEGORY;
   categoryFilter: Category | undefined;
   tagFilter: Tag | undefined;
+  tags: Tag[] = TAGS;
 
   setCategoryFilter(category: Category) {
     this.categoryFilter = category;
+    console.log(category);
     this.tagFilter = undefined;
   }
 

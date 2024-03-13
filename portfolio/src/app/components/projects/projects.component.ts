@@ -36,10 +36,18 @@ export class ProjectsComponent implements OnInit {
       .subscribe((projects) => (this.projects = projects));
   }
 
-  getProjectsByTheme(): void {
-    const themeSlug = String(this.route.snapshot.paramMap.get('slug'));
+  getProjectsByCategory(): void {
+    const categorySlug = String(this.route.snapshot.paramMap.get('slug'));
     this.projectService
-      .getProjectsByTheme(themeSlug)
+      .getProjectsByCategory(categorySlug)
+      .subscribe((data) => (this.projects = data));
+  }
+
+  getProjectsByTag(): void {
+    const tagSlug = String(this.route.snapshot.paramMap.get('slug'));
+    console.log("taag");
+    this.projectService
+      .getProjectsByTag(tagSlug)
       .subscribe((data) => (this.projects = data));
   }
 
@@ -47,9 +55,12 @@ export class ProjectsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       console.log(params);
       const segment: string = this.route.snapshot.url[1]?.path;
-      if (segment === 'themes') {
-        this.getProjectsByTheme();
-      } else {
+      if (segment === 'categories') {
+        this.getProjectsByCategory();
+      } else if (segment === 'tags') {
+        this.getProjectsByTag();
+      }
+      else {
         this.getProjects();
       }
     });
