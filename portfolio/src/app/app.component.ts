@@ -44,13 +44,11 @@ export class AppComponent {
 
   setCategoryFilter(category: Category) {
     this.categoryFilter = category;
-    console.log("category");
     this.tagFilter = undefined;
   }
 
   setTagFilter(tag: Tag) {
     this.tagFilter = tag;
-    console.log("tag");
     this.categoryFilter = undefined;
   }
 
