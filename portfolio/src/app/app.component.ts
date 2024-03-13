@@ -44,7 +44,6 @@ export class AppComponent {
 
   setCategoryFilter(category: Category) {
     this.categoryFilter = category;
-    console.log(category);
     this.tagFilter = undefined;
   }
 
