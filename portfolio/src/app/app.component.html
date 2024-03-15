@@ -1,5 +1,5 @@
 <header>
-  <h1>{{ title }}</h1>
+  <!-- <h1>{{ title }}</h1> -->
   <nav>
     <ul>
       <li>
@@ -41,7 +41,7 @@
   </nav>
 </header>
 <main>
-  <section id="side-nav">
+  <!-- <section id="side-nav">
     <article *ngIf="categoryFilter || tagFilter">
       <h2>Filter:</h2>
       <div class="current-filter">
@@ -61,7 +61,7 @@
           {{ tag.name }}
         </div>
     </article>
-  </section>
+  </section> -->
   <router-outlet></router-outlet>
 </main>
 <footer>&copy; {{ date.getFullYear() }} {{ author }}</footer>
