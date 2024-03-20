@@ -53,7 +53,7 @@
     position: relative;
     color: transparent;
     font-size: 10em;
-    z-index: 1;
+    z-index: 2;
     span {
         animation: animate 4s linear forwards;
 
@@ -83,9 +83,12 @@
 }
 
 #road {
-    z-index: 2;
+    z-index: 3;
 }
 
+#mountain {
+  z-index: 2;
+}
 @keyframes animate {
     0% {
         color: transparent; /* Initially transparent */
@@ -121,7 +124,7 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    overflow: hidden;
+    // overflow: hidden;
   }
   
 
@@ -267,3 +270,20 @@
     }
   }
   
+  @media screen and (max-width: 768px) {
+    #text {
+        font-size: 6em; /* Adjust font size for smaller screens */
+    }
+  //   #moon {
+  //     width: 300px; /* Adjust moon size for smaller screens */
+  //     right: 50px; /* Move moon closer to the center on smaller screens */
+  // }
+}
+
+#moon {
+  position: absolute;
+  bottom: 0; /* Position the moon at the bottom */
+  right: 0; /* Position the moon at the right */
+  width: 100%; /* Adjust moon size for smaller screens */
+  height: auto; /* Maintain aspect ratio */
+}
