@@ -50,6 +50,15 @@ export class HomeComponent implements OnInit{
       ${tam[getRandomArbitrary(0, 5)]}' style='background:white;position:relative;animation-delay: ${getRandomArbitrary(0, 9)}s; left: ${getRandomArbitrary(0, widthWindow)}px; top: ${getRandomArbitrary(0, heightWindow)}px;'></div>`;
     }
 
+    var night2 = this.el.nativeElement.querySelector(".constellation2");
+
+
+    for (var i = 0; i < numStars; i++) {
+      star += `<div class='star ${style[getRandomArbitrary(0, 3)]} ${opacity[getRandomArbitrary(0, 6)]} 
+      ${tam[getRandomArbitrary(0, 5)]}' style='background:white;position:relative;animation-delay: ${getRandomArbitrary(0, 9)}s; left: ${getRandomArbitrary(0, widthWindow)}px; top: ${getRandomArbitrary(0, heightWindow)}px;'></div>`;
+    }
+
     night.innerHTML = star;
+    night2.innerHTML = star;
   }
 }

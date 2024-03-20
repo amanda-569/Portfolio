@@ -108,7 +108,7 @@ app-root {
 }
 
 #road {
-  z-index: 2;
+  z-index: 3;
 }
 
 @keyframes animate {
@@ -203,7 +203,7 @@ app-root {
   animation-name: star;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  z-index: 9999;
+  z-index: 2;
   opacity: 1;
 }
 
