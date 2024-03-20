@@ -22,6 +22,21 @@ export class HomeComponent implements OnInit{
     const mountain = this.el.nativeElement.querySelector('#mountain');
     const road = this.el.nativeElement.querySelector('#road');
     const text = this.el.nativeElement.querySelector('#text');
+    const hiddenElements = document.querySelectorAll('.hidden-home');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry);
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+        else {
+          entry.target.classList.remove('show');
+        }
+      });
+    });
+
+    hiddenElements.forEach((el) => observer.observe(el));
 
     night.style.top = value * 0.5 + 'px';
     moon.style.left = -value * 0.5 + 'px';
