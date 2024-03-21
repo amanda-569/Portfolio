@@ -28,7 +28,7 @@
 
 .overlay-content {
   position: absolute;
-  top: 100vh;
+  top: 125vh;
   left: 0;
   width: 100%;
   height: auto;
@@ -42,7 +42,7 @@
 }
 
 .overlay-content section:nth-child(2) {
-  margin-top: 30vh; /* Add margin-top to the second section */
+  margin-top: 50vh; /* Add margin-top to the second section */
 }
 
 .hidden-home {
@@ -57,6 +57,57 @@
   filter: blur(0);
   transform: translateX(0);
 
+}
+.technology-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure the container takes the full width */
+  max-width: 960px; /* Set a maximum width to prevent it from becoming too wide */
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Spread columns evenly */
+    margin-bottom: 20px;
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; 
+}
+
+.tech-hidden {
+  background-color: rgba(210, 210, 210, 0.5);
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-hidden::before {
+  content: '';
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle at center, transparent 10%, rgba(0,0,0,0.95));
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s;
+  opacity: 0;
+}
+
+.tech-hidden:hover::before {
+  opacity: 1; /* Show the beam on hover */
 }
 
 .tech:nth-child(2) {
