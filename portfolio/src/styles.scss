@@ -375,3 +375,30 @@ app-root {
   }
 }
 
+.tech-hidden {
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid rgba(205, 205, 205, 0.2);
+  background-attachment: fixed;
+  background-color: rgba(205, 205, 205, 0.09);
+}
+
+.tech-hidden::before {
+  border-radius: inherit;
+  content: "";
+  left: 0px;
+  opacity: 0;
+  transition: opacity 500ms;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.10),
+    transparent 40%
+  );
+    position: absolute;
+    top: 0px;
+}
