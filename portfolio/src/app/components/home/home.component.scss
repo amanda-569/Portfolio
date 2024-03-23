@@ -199,6 +199,14 @@
 #mountain {
   z-index: 2;
 }
+
+#moon {
+  position: absolute;
+  bottom: 0; /* Position the moon at the bottom */
+  right: 0; /* Position the moon at the right */
+  width: 100%; /* Adjust moon size for smaller screens */
+  height: auto; /* Maintain aspect ratio */
+}
 @keyframes animate {
     0% {
         color: transparent; /* Initially transparent */
@@ -383,18 +391,21 @@
   
   @media screen and (max-width: 768px) {
     #text {
-        font-size: 6em; /* Adjust font size for smaller screens */
+        font-size: 6em;
     }
-  //   #moon {
-  //     width: 300px; /* Adjust moon size for smaller screens */
-  //     right: 50px; /* Move moon closer to the center on smaller screens */
-  // }
+    .constellation2 {
+      max-height: 180vh;
+    }
 }
 
-#moon {
-  position: absolute;
-  bottom: 0; /* Position the moon at the bottom */
-  right: 0; /* Position the moon at the right */
-  width: 100%; /* Adjust moon size for smaller screens */
-  height: auto; /* Maintain aspect ratio */
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .constellation2 {
+    max-height: 200vh;
+  }
+  .technology-container {
+    width: 100%;
+  }
 }
+
+
+

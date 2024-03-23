@@ -35,4 +35,14 @@ footer {
   font-size: 0.8rem;
   padding-right: 1rem;
   align-self: flex-end;
+  width: 100%;
+  background: rgba(0, 0, 0, 1); 
+  text-align: center;
+  z-index: 2;
+}
+.page-links{
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+  justify-content: center;
 }
