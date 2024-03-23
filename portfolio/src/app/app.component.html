@@ -1,5 +1,4 @@
 <header>
-  <!-- <h1>{{ title }}</h1> -->
   <nav>
     <ul>
       <li>
@@ -20,48 +19,28 @@
           >Projects</a
         >
       </li>
-      <!-- <li>
-        <a
-          routerLink="projects/categories/:slug"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          ariaCurrentWhenActive="page"
-          >Categories</a
-        >
-      </li>
-      <li>
-        <a
-          routerLink="projects/tags/:slug"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          >Tags</a
-        >
-      </li> -->
     </ul>
   </nav>
 </header>
 <main>
-  <!-- <section id="side-nav">
-    <article *ngIf="categoryFilter || tagFilter">
-      <h2>Filter:</h2>
-      <div class="current-filter">
-        {{ categoryFilter?.name || tagFilter?.name }}
-        <i class="fa fa-trash-o" (click)="clearFilters()"  routerLink="/projects"></i>
-      </div>
-    </article>
-    <article id="categories">
-      <h3>Categories</h3>
-        <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]" (click)="setCategoryFilter(category)">
-          {{ category.name }}
-        </div>
-    </article>
-    <article id="tags">
-      <h3>Tags</h3>
-        <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]" (click)="setTagFilter(tag)">
-          {{ tag.name }}
-        </div>
-    </article>
-  </section> -->
   <router-outlet></router-outlet>
 </main>
-<footer>&copy; {{ date.getFullYear() }} {{ author }}</footer>
+<footer>
+  <div class="page-links">
+    <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    ariaCurrentWhenActive="page"
+    >Home</a
+  >
+    <a
+    routerLink="/projects"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    ariaCurrentWhenActive="page"
+    >Projects</a
+  >
+  </div>
+  &copy; {{ date.getFullYear() }} {{ author }}
+</footer>
