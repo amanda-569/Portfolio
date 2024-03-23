@@ -1,8 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { CategoriesComponent } from '../categories/categories.component';
+import { TagsComponent } from '../tags/tags.component';
 
 import { Category } from '../../models/category';
+import { CATEGORY } from '../../data/categories';
 import { Tag } from '../../models/tag';
+import { TAGS } from '../../data/tags';
 
 import { ProjectFilterPipe } from '../../pipes/project-filter.pipe';
 
@@ -14,12 +19,21 @@ import { ProjectComponent } from '../project/project.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { RouterModule } from '@angular/router';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectFilterPipe, ProjectComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    ProjectFilterPipe,
+    ProjectsComponent,
+    ProjectComponent,
+    CategoriesComponent,
+    TagsComponent,
+  ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
@@ -28,6 +42,14 @@ export class ProjectsComponent implements OnInit {
     private projectService: ProjectService,
     private route: ActivatedRoute
   ) {}
+
+  title = 'Portfolio';
+  date = new Date();
+  author = 'Amanda Mar';
+  categories: Category[] = CATEGORY;
+  categoryFilter: Category | undefined;
+  tagFilter: Tag | undefined;
+  tags: Tag[] = TAGS;
 
   projects: Project[] = [];
   getProjects(): void {
@@ -66,19 +88,21 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
-  @Input() categoryFilter: Category | undefined;
-  @Output() newCategoryFilterEvent = new EventEmitter<Category>();
-  @Input() tagFilter: Tag | undefined;
-  @Output() newTagFilterEvent = new EventEmitter<Tag>();
+  // @Input() categoryFilter: Category | undefined;
+  // @Output() newCategoryFilterEvent = new EventEmitter<Category>();
+  // @Input() tagFilter: Tag | undefined;
+  // @Output() newTagFilterEvent = new EventEmitter<Tag>();
 
   setCategoryFilter(category: Category) {
     this.categoryFilter = category;
-    this.newCategoryFilterEvent.emit(category);
+    // this.newCategoryFilterEvent.emit(category);
+    this.tagFilter = undefined;
   }
 
   setTagFilter(tag: Tag) {
     this.tagFilter = tag;
-    this.newTagFilterEvent.emit(tag);
+    // this.newTagFilterEvent.emit(tag);
+    this.categoryFilter = undefined;
   }
 
   clearFilters() {
@@ -92,5 +116,10 @@ export class ProjectsComponent implements OnInit {
 
   setSelectedProject(project: Project): void {
     this.newSelectedProjectEvent.emit(project);
+    this.selectedProject = project;
+  }
+
+  clearSelectedProject() {
+    this.selectedProject = undefined;
   }
 }

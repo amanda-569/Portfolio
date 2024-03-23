@@ -14,6 +14,7 @@ import { Tag } from './models/tag';
 import { TAGS } from './data/tags';
 import { Project } from './models/project';
 
+
 import { ProjectFilterPipe } from './pipes/project-filter.pipe';
 
 @Component({
