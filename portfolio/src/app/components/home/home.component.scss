@@ -81,7 +81,6 @@
 }
 
 .tech-hidden {
-  background-color: rgba(210, 210, 210, 0.5);
   color: white;
   padding: 10px;
   margin: 5px;
@@ -89,26 +88,29 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  border: 3px solid rgba(205, 205, 205, 0.2);
+  background-attachment: fixed;
+  background-color: rgba(205, 205, 205, 0.09);
 }
 
 .tech-hidden::before {
-  content: '';
-  position: absolute;
-  top: var(--y);
-  left: var(--x);
-  width: 300%;
-  height: 300%;
-  background: radial-gradient(circle at center, transparent 10%, rgba(0,0,0,0.95));
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s;
+  border-radius: inherit;
+  content: "";
+  left: 0px;
   opacity: 0;
+  transition: opacity 500ms;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.10),
+    transparent 40%
+  );
+    position: absolute;
+    top: 0px;
 }
 
-.tech-hidden:hover::before {
-  opacity: 1; /* Show the beam on hover */
-}
+.card-div:hover::before { 
+  opacity:1  
+  }
 
 .tech:nth-child(2) {
   transition-delay: 200ms;
@@ -233,7 +235,7 @@
     position: absolute;
     // overflow: hidden;
   }
-  
+
 
   
   @keyframes star {
@@ -327,6 +329,7 @@
 
   .constellation2 {
     background: black;
+    max-height: 150vh;
   }
   
   .star.tam3 {

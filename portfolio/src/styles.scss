@@ -295,35 +295,6 @@ app-root {
   width: 100%; 
 }
 
-.tech-hidden {
-  background-color: rgba(210, 210, 210, 0.5);
-  color: white;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 5px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.tech-hidden::before {
-  content: '';
-  position: absolute;
-  top: var(--y);
-  left: var(--x);
-  width: 300%;
-  height: 300%;
-  background: radial-gradient(circle at center, transparent 10%, rgba(0,0,0,0.95));
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s;
-  opacity: 0;
-}
-
-.tech-hidden:hover::before {
-  opacity: 1; /* Show the beam on hover */
-}
 
 .tech:nth-child(2) {
   transition-delay: 200ms;
@@ -403,3 +374,4 @@ app-root {
     transition: none;
   }
 }
+
