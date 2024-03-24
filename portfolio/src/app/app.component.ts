@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -13,7 +13,6 @@ import { CATEGORY } from './data/categories';
 import { Tag } from './models/tag';
 import { TAGS } from './data/tags';
 import { Project } from './models/project';
-
 
 import { ProjectFilterPipe } from './pipes/project-filter.pipe';
 
@@ -66,5 +65,23 @@ export class AppComponent {
 
   clearSelectedProject() {
     this.selectedProject = undefined;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event) {
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+
+    // Check if header and main are not null before proceeding
+    if (header && main) {
+      const mainTop = main.offsetTop;
+      const scrolled = window.scrollY;
+
+      if (scrolled > mainTop) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
   }
 }
