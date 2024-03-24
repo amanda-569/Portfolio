@@ -1,9 +1,20 @@
 header {
-  margin: 0 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .4)); /* Apply gradient background */
+  transition: background-color 0.5s ease; /* Add transition for smooth fading effect */
+  z-index: 1; /* Ensure the header appears above other content */
+
+header.scrolled {
+  background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(0, 0, 0, 1)); /* Adjust gradient for scrolled state */
+}
+
   ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -11,11 +22,11 @@ header {
       margin: 0 1rem;
       a {
         text-decoration: none;
-        color: black;
+        color: rgb(150, 150, 150);
         font-size: 1.2rem;
         cursor: pointer;
         &.active {
-          color: #4aa;
+          color: rgb(170, 160, 68);
         }
       }
     }
