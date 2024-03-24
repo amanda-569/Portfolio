@@ -3,12 +3,12 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .4)); /* Apply gradient background */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .4)); /* Apply gradient background */
   transition: background-color 0.5s ease; /* Add transition for smooth fading effect */
   z-index: 1; /* Ensure the header appears above other content */
 
 header.scrolled {
-  background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(0, 0, 0, 1)); /* Adjust gradient for scrolled state */
+  background: black; /* Adjust gradient for scrolled state */
 }
 
   ul {
@@ -23,7 +23,7 @@ header.scrolled {
       a {
         text-decoration: none;
         color: rgb(150, 150, 150);
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         cursor: pointer;
         &.active {
           color: rgb(170, 160, 68);

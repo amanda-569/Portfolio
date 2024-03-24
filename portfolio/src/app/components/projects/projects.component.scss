@@ -4,6 +4,16 @@
   justify-content: flex-start; /* Start projects from the left side */
 }
 
+
+#projects {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 10px;
+  justify-items: center;
+}
+
+
 article {
   width: calc(50% - 20px); /* Adjust the width of each project card */
   margin: 10px; /* Add margin between project cards */
@@ -33,11 +43,11 @@ main {
   width: 100%;
 }
 
-#minifigs {
+#projects {
   width: 100%;
 }
 
-.minifig-card {
+.project-card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -70,12 +80,4 @@ a:visited {
 
 .hidden {
   display: none;
-}
-
-#minifigs {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  grid-gap: 10px;
-  justify-items: center;
 }
