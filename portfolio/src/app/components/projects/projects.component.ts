@@ -20,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { RouterModule } from '@angular/router';
 import VanillaTilt from 'vanilla-tilt';
+import {NgTiltModule} from '@geometricpanda/angular-tilt';
 
 @Component({
   selector: 'app-projects',
@@ -34,6 +35,7 @@ import VanillaTilt from 'vanilla-tilt';
     ProjectComponent,
     CategoriesComponent,
     TagsComponent,
+    NgTiltModule
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
