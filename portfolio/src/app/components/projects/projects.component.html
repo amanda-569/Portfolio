@@ -1,5 +1,8 @@
+<!-- <div class="night"></div>
+<div class="constellation"></div> -->
 <section id="projects">
   <article
+  class="vanillaTilt" data-tilt
     *ngFor="let project of projects | projectFilter : tagFilter"
     [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
     (click)="setSelectedProject(project)"

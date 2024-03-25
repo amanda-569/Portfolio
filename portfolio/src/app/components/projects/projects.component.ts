@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CategoriesComponent } from '../categories/categories.component';
@@ -19,6 +19,7 @@ import { ProjectComponent } from '../project/project.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { RouterModule } from '@angular/router';
+import VanillaTilt from 'vanilla-tilt';
 
 @Component({
   selector: 'app-projects',
@@ -37,11 +38,12 @@ import { RouterModule } from '@angular/router';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, AfterViewInit {
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute
   ) {}
+  @ViewChildren('vanillaTilt') vanillaTiltElements!: QueryList<ElementRef>;
 
   title = 'Portfolio';
   date = new Date();
@@ -67,13 +69,21 @@ export class ProjectsComponent implements OnInit {
 
   getProjectsByTag(): void {
     const tagSlug = String(this.route.snapshot.paramMap.get('slug'));
-    console.log("taag");
     this.projectService
       .getProjectsByTag(tagSlug)
       .subscribe((data) => (this.projects = data));
   }
 
+  ngAfterViewInit(): void {
+    // Initialize Vanilla Tilt for each .vanillaTilt element after the view has been initialized
+    this.vanillaTiltElements.forEach((elementRef: ElementRef) => {
+      VanillaTilt.init(elementRef.nativeElement);
+    });
+  }
+  
   ngOnInit(): void {
+    // this.categoryFilter = this.categories[0];
+    VanillaTilt.init(document.querySelector('.vanillaTilt') as any);
     this.route.params.subscribe((params) => {
       console.log(params);
       const segment: string = this.route.snapshot.url[1]?.path;
@@ -95,12 +105,14 @@ export class ProjectsComponent implements OnInit {
 
   setCategoryFilter(category: Category) {
     this.categoryFilter = category;
+    console.log("category:", category);
     // this.newCategoryFilterEvent.emit(category);
     this.tagFilter = undefined;
   }
 
   setTagFilter(tag: Tag) {
     this.tagFilter = tag;
+    console.log("tag:", tag);
     // this.newTagFilterEvent.emit(tag);
     this.categoryFilter = undefined;
   }
