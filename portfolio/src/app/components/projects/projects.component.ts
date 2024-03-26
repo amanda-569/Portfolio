@@ -19,7 +19,6 @@ import { ProjectComponent } from '../project/project.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { RouterModule } from '@angular/router';
-import VanillaTilt from 'vanilla-tilt';
 import {NgTiltModule} from '@geometricpanda/angular-tilt';
 
 @Component({
@@ -40,12 +39,11 @@ import {NgTiltModule} from '@geometricpanda/angular-tilt';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
-export class ProjectsComponent implements OnInit, AfterViewInit {
+export class ProjectsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute
   ) {}
-  @ViewChildren('vanillaTilt') vanillaTiltElements!: QueryList<ElementRef>;
 
   title = 'Portfolio';
   date = new Date();
@@ -75,17 +73,9 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
       .getProjectsByTag(tagSlug)
       .subscribe((data) => (this.projects = data));
   }
-
-  ngAfterViewInit(): void {
-    // Initialize Vanilla Tilt for each .vanillaTilt element after the view has been initialized
-    this.vanillaTiltElements.forEach((elementRef: ElementRef) => {
-      VanillaTilt.init(elementRef.nativeElement);
-    });
-  }
   
   ngOnInit(): void {
     // this.categoryFilter = this.categories[0];
-    VanillaTilt.init(document.querySelector('.vanillaTilt') as any);
     this.route.params.subscribe((params) => {
       console.log(params);
       const segment: string = this.route.snapshot.url[1]?.path;
