@@ -21,7 +21,7 @@
           </div>
         </section>
       </a>
-      <footer class="project-selectors">
+      <footer ngTiltParallax [distance]="30" class="project-selectors">
         <div *ngIf="project.category">
           Category:
           <a [href]="'/projects/categories/' + project.category.slug">{{
