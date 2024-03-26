@@ -88,7 +88,8 @@
   border-radius: 5px;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
+  z-index: 9999;
   border: 3px solid rgba(205, 205, 205, 0.2);
   background-attachment: fixed;
   background-color: rgba(205, 205, 205, 0.09);
@@ -109,7 +110,7 @@
     top: 0px;
 }
 
-.card-div:hover::before { 
+.tech-hidden:hover::before { 
   opacity:1  
   }
 

@@ -46,6 +46,10 @@ main {
   }
 }
 
+.project-selectors {
+  color: rgb(180, 180, 180);
+}
+
 .project-card {
   display: flex;
   flex-direction: column;
@@ -75,7 +79,7 @@ footer {
 
 a,
 a:visited {
-  color: black;
+  color: rgb(180, 180, 180);
   text-decoration: none;
   cursor: pointer;
 }
