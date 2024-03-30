@@ -5,3 +5,12 @@ export const CATEGORY: Category[] = [
   { "id": 3, "slug": "full-stack", "name": "Full Stack" }
 ]
 
+export function getCategoryNameBySlug(slug: string) : Category | undefined{
+  for (var category of CATEGORY) {
+    if (category.slug === slug) {
+      return category;
+    }
+  }
+
+  return undefined;
+}
