@@ -1,13 +1,13 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CategoriesComponent } from '../categories/categories.component';
 import { TagsComponent } from '../tags/tags.component';
 
 import { Category } from '../../models/category';
-import { CATEGORY } from '../../data/categories';
+import { CATEGORY, getCategoryNameBySlug } from '../../data/categories';
 import { Tag } from '../../models/tag';
-import { TAGS } from '../../data/tags';
+import { TAGS, getTagNameBySlug } from '../../data/tags';
 
 import { ProjectFilterPipe } from '../../pipes/project-filter.pipe';
 
@@ -19,6 +19,7 @@ import { ProjectComponent } from '../project/project.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { RouterModule } from '@angular/router';
+import {NgTiltModule} from '@geometricpanda/angular-tilt';
 
 @Component({
   selector: 'app-projects',
@@ -33,6 +34,7 @@ import { RouterModule } from '@angular/router';
     ProjectComponent,
     CategoriesComponent,
     TagsComponent,
+    NgTiltModule
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
@@ -47,7 +49,7 @@ export class ProjectsComponent implements OnInit {
   date = new Date();
   author = 'Amanda Mar';
   categories: Category[] = CATEGORY;
-  categoryFilter: Category | undefined;
+  filterString?: string
   tagFilter: Tag | undefined;
   tags: Tag[] = TAGS;
 
@@ -58,29 +60,33 @@ export class ProjectsComponent implements OnInit {
       .subscribe((projects) => (this.projects = projects));
   }
 
-  getProjectsByCategory(): void {
-    const categorySlug = String(this.route.snapshot.paramMap.get('slug'));
+  getProjectsByCategory(categorySlug: string): void {
     this.projectService
       .getProjectsByCategory(categorySlug)
       .subscribe((data) => (this.projects = data));
   }
 
-  getProjectsByTag(): void {
-    const tagSlug = String(this.route.snapshot.paramMap.get('slug'));
-    console.log("taag");
+  getProjectsByTag(tagSlug : string): void {
     this.projectService
       .getProjectsByTag(tagSlug)
       .subscribe((data) => (this.projects = data));
   }
-
+  
   ngOnInit(): void {
+    // this.categoryFilter = this.categories[0];
     this.route.params.subscribe((params) => {
       console.log(params);
       const segment: string = this.route.snapshot.url[1]?.path;
       if (segment === 'categories') {
-        this.getProjectsByCategory();
+        const categorySlug = String(this.route.snapshot.paramMap.get('slug'));
+        const categoryName = getCategoryNameBySlug(categorySlug)?.name;
+        this.filterString = categoryName;
+        this.getProjectsByCategory(categorySlug);
       } else if (segment === 'tags') {
-        this.getProjectsByTag();
+        const tagSlug = String(this.route.snapshot.paramMap.get('slug'));
+        const tagName = getTagNameBySlug(tagSlug)?.name;
+        this.filterString = tagName;
+        this.getProjectsByTag(tagSlug);
       }
       else {
         this.getProjects();
@@ -93,20 +99,20 @@ export class ProjectsComponent implements OnInit {
   // @Input() tagFilter: Tag | undefined;
   // @Output() newTagFilterEvent = new EventEmitter<Tag>();
 
-  setCategoryFilter(category: Category) {
-    this.categoryFilter = category;
-    // this.newCategoryFilterEvent.emit(category);
-    this.tagFilter = undefined;
-  }
+  // setCategoryFilter(category: Category) {
+  //   this.categoryFilter = category;
+  //   console.log("category:", category);
+  //   // this.newCategoryFilterEvent.emit(category);
+  //   this.tagFilter = undefined;
+  // }
 
   setTagFilter(tag: Tag) {
     this.tagFilter = tag;
-    // this.newTagFilterEvent.emit(tag);
-    this.categoryFilter = undefined;
+    console.log("tag:", tag);
   }
 
   clearFilters() {
-    this.categoryFilter = undefined;
+    // this.categoryFilter = undefined;
     this.tagFilter = undefined;
   }
 

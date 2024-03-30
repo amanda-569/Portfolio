@@ -1,9 +1,17 @@
 import { Tag } from '../models/tag';
 
 export const TAGS: Tag[] = [
-  { "id": 1, "name": "JavaScript", "slug": "javacript" },
+  { "id": 1, "name": "JavaScript", "slug": "javascript" },
   { "id": 2, "name": "CSS", "slug": "css" },
   { "id": 3, "name": "React", "slug": "react" },
   { "id": 4, "name": "Saas", "slug": "saas" },
   { "id": 5, "name": "C#", "slug": "csharp" }
 ]
+export function getTagNameBySlug(slug : string) : Tag | undefined{
+  for (var tag of TAGS) {
+    if (tag.slug === slug) {
+      return tag;
+    }
+  }
+  return undefined;
+}

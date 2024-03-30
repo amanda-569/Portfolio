@@ -1,16 +1,43 @@
-#projects {
+.project-container {
   display: flex;
-  flex-wrap: wrap; /* Allow projects to wrap if they exceed the container width */
-  justify-content: flex-start; /* Start projects from the left side */
+  flex-direction: row;
+  // align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
 
+.back-video {
+  position: fixed; /* Use fixed positioning to cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Set width to cover the entire width of the viewport */
+  height: 100%; /* Set height to cover the entire height of the viewport */
+  object-fit: cover; /* Ensure the video covers the entire space while maintaining aspect ratio */
+  z-index: -1; /* Ensure the video is behind other content */
+}
+@media (min-aspect-ratio: 16/9) {
+  .back-video{
+    width: 100%;
+    height: auto;
+  }
+}
 
+@media (max-aspect-ratio: 16/9) {
+  .back-video{
+    width: auto;
+    height: 100%;
+  }
+}
 #projects {
-  width: 100%;
+  width: 80%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 10px;
   justify-items: center;
+  margin-top: 2.5rem;
 }
 
 
@@ -18,8 +45,6 @@ article {
   width: calc(50% - 20px); /* Adjust the width of each project card */
   margin: 10px; /* Add margin between project cards */
 }
-
-
 
 /* Styles for the rest of your layout */
 main {
@@ -30,26 +55,22 @@ main {
   align-items: flex-start;
   min-width: 460px;
   width: 100%;
-  #side-nav {
-    margin-right: 1rem;
-    text-align: right;
-    background-color: #eee;
-    border-radius: 1rem;
-    padding: 1rem;
-    align-self: flex-start;
-    width: 10rem;
-    div {
-      cursor: pointer;
+  
+}
 
-      &.active {
-        background-color: #ccc;
-      }
-    }
+#side-nav {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 10rem;
+  color: rgb(180, 180, 180);
+  div {
+    cursor: pointer;
   }
 }
 
-#projects {
-  width: 100%;
+.project-selectors {
+  color: rgb(180, 180, 180);
 }
 
 .project-card {
@@ -59,26 +80,28 @@ main {
 }
 
 article {
-  width: 60%;
+  width: 80%;
   min-height: 10rem;
-  min-width: 15rem;
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgb(220, 219, 218);
-  border-radius: 0.3rem 0.3rem 0 0;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  // backdrop-filter: blur(5px);
 }
 
 footer {
   font-size: 0.8rem;
   padding-right: 1rem;
-  align-self: flex-end;
+  align-self: center-end;
 }
 
 a,
 a:visited {
-  color: black;
+  color: rgb(180, 180, 180);
   text-decoration: none;
   cursor: pointer;
 }

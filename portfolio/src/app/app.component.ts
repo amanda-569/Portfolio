@@ -28,7 +28,7 @@ import { ProjectFilterPipe } from './pipes/project-filter.pipe';
     ProjectsComponent,
     ProjectComponent,
     CategoriesComponent,
-    TagsComponent,
+    TagsComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
