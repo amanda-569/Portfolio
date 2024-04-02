@@ -51,6 +51,15 @@
   filter: blur(5px);
   transform: translateX(-100%);
   width: 80%;
+  max-width: 600px;
+  h1 {
+    margin-bottom: 1rem;
+  }
+  p {
+    text-indent: 50px;
+    text-align: start;
+    margin-bottom: 1rem;
+  }
 }
 
 .show {
@@ -79,6 +88,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%; 
+  justify-content: center;
 }
 
 .tech-hidden {
@@ -339,7 +349,7 @@
 
   .constellation2 {
     background: black;
-    max-height: 150vh;
+    max-height: 200vh;
   }
   
   .star.tam3 {
@@ -395,13 +405,13 @@
         font-size: 6em;
     }
     .constellation2 {
-      max-height: 180vh;
+      max-height: 200vh;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .constellation2 {
-    max-height: 200vh;
+    max-height: 250vh;
   }
   .technology-container {
     width: 100%;

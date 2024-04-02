@@ -59,10 +59,11 @@ main {
 }
 
 #side-nav {
+  margin-top: 1.5rem;
   margin-right: 1rem;
   border-radius: 1rem;
   padding: 1rem;
-  width: 10rem;
+  width: 7rem;
   color: rgb(180, 180, 180);
   div {
     cursor: pointer;
@@ -81,7 +82,7 @@ main {
 
 article {
   width: 80%;
-  min-height: 10rem;
+  // min-height: 10rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
