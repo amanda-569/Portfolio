@@ -4,18 +4,113 @@ img {
 }
 
 .project-container {
+  margin-top: 6rem;
+}
+
+.back-button {
   margin-top: 3rem;
+  button {
+    border-radius: 20px;
+    border: 3px solid rgba(205, 205, 205, 0.2);
+    background-color: rgba(205, 205, 205, 0.09);
+    color: white;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  button:hover {
+    background-color: rgba(211, 211, 211, 0.4); /* Lightish grey */
+    border-color: rgba(211, 211, 211, 0.4); /* Lightish grey */
+    box-shadow: 0 0 10px rgba(211, 211, 211, 0.4); /* Lightish grey with some blur */
+  }
+}
+
+
+
+
+.back-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+@media (min-aspect-ratio: 16/9) {
+  .back-video{
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .back-video{
+    width: auto;
+    height: 100%;
+  }
+}
+
+.project-card {
+  position: relative;
+  z-index: 1; /* Ensure project card appears above video */
+  color: white; /* Set text color to white for better visibility */
+  padding: 1rem; /* Add padding for better spacing */
+  img {
+    width: 500px;
+  }
+}
+
+/* Style header and footer */
+header {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+}
+
+/* Style button */
+header button {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  color: black; /* Button text color */
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hover effect for button */
+header button:hover {
+  background-color: rgba(255, 255, 255, 1); /* Fully opaque white on hover */
+}
+
+/* Style project title */
+h2 {
+  margin: 0;
+  font-size: 2rem; /* Increase font size for better visibility */
+}
+
+/* Style project excerpt and body */
+.project-card div {
+  margin-top: 1rem; /* Add margin between title and content */
+  color: #eee; /* Set text color to white */
+}
+
+/* Style category and tags */
+footer div {
+  margin-top: 0.5rem; /* Add margin between elements */
+}
+
+footer span {
+  margin-right: 0.5rem; /* Add spacing between tags */
 }
 
 article {
-  width: 80%;
-  min-height: 10rem;
-  min-width: 15rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rgb(220, 219, 218);
+  // width: 80%;
+  // min-height: 10rem;
+  // min-width: 15rem;
+  // padding: 1rem;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // background-color: rgb(220, 219, 218);
 
   h2 {
     margin: 0;
@@ -25,7 +120,7 @@ article {
     align-self: flex-start;
     margin-top: 1rem;
     font-size: 0.8rem;
-    background-color: #eee;
+    // background-color: #eee;
     width: 100%;
     span {
       cursor: pointer;
