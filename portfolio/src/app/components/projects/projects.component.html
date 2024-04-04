@@ -4,13 +4,14 @@
   </video>
   <div class="nav-container">
     <section id="side-nav">
-      <article *ngIf="filterString">
-        <h3>Filter:</h3>
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+      <div class="filter-container" *ngIf="filterString">
+        <h3>Filtered By:</h3>
         <div class="current-filter">
           {{ filterString }}
           <i class="fa fa-trash-o" (click)="clearFilters()"  routerLink="/projects"></i>
         </div>
-      </article>
+      </div>
         <h3>Categories</h3>
           <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]">
             {{ category.name }}
