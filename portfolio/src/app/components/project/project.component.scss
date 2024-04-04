@@ -23,6 +23,18 @@ img {
   }
 }
 
+.project-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  img {
+    justify-self: center;
+    border-radius: 25px;
+  }
+  div {
+    justify-self: center;
+  }
+}
+
 
 
 
