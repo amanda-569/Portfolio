@@ -66,6 +66,21 @@ export class ProjectsComponent implements OnInit {
       .subscribe((data) => (this.projects = data));
   }
 
+  openNav(): void {
+    const navContainer = document.querySelector('.nav-container') as HTMLElement;
+    if (navContainer) {
+      navContainer.style.width = '250px';
+    }
+  }
+  
+  closeNav(): void {
+    const navContainer = document.querySelector('.nav-container') as HTMLElement;
+    if (navContainer) {
+      navContainer.style.width = '0';
+    }
+  }
+  
+
   getProjectsByTag(tagSlug : string): void {
     this.projectService
       .getProjectsByTag(tagSlug)
