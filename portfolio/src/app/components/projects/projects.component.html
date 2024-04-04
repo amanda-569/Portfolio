@@ -2,6 +2,28 @@
   <video autoplay loop muted plays-inline class="back-video">
     <source src="../../../assets/videos/StarsBackground.mp4" type="video/mp4">
   </video>
+  <div class="nav-container">
+    <section id="side-nav">
+      <article *ngIf="filterString">
+        <h3>Filter:</h3>
+        <div class="current-filter">
+          {{ filterString }}
+          <i class="fa fa-trash-o" (click)="clearFilters()"  routerLink="/projects"></i>
+        </div>
+      </article>
+        <h3>Categories</h3>
+          <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]">
+            {{ category.name }}
+          </div>
+        <h3>Tags</h3>
+          <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]" >
+            {{ tag.name }}
+          </div>
+      
+    </section>
+  </div>
+  <button class="openbtn" (click)="openNav()">&#9776;</button>
+
   <section id="projects">
     <article
     class="vanillaTilt" ngTilt
@@ -37,28 +59,6 @@
       </footer>
     </article>
   </section>
-  <div class="nav-container">
-    <section id="side-nav">
-      <article *ngIf="filterString">
-        <h2>Filter:</h2>
-        <div class="current-filter">
-          {{ filterString }}
-          <i class="fa fa-trash-o" (click)="clearFilters()"  routerLink="/projects"></i>
-        </div>
-      </article>
-      <article id="categories">
-        <h3>Categories</h3>
-          <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]">
-            {{ category.name }}
-          </div>
-      </article>
-      <article id="tags">
-        <h3>Tags</h3>
-          <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]" >
-            {{ tag.name }}
-          </div>
-      </article>
-    </section>
-  </div>
+  
   
 </div>

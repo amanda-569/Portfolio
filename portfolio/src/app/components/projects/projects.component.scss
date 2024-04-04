@@ -9,6 +9,54 @@
   height: auto;
 }
 
+.nav-container {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s;
+}
+
+.nav-container #side-nav {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+
+#side-nav {
+  z-index: 2;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  height: fit-content;
+  position: fixed;
+  top: 3rem;
+  left: 0;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+.nav-container #side-nav:hover {
+  color: #f1f1f1;
+}
+
 .back-video {
   position: fixed; /* Use fixed positioning to cover the entire viewport */
   top: 0;
@@ -58,17 +106,17 @@ main {
   
 }
 
-#side-nav {
-  margin-top: 1.5rem;
-  margin-right: 1rem;
-  border-radius: 1rem;
-  padding: 1rem;
-  width: 7rem;
-  color: rgb(180, 180, 180);
-  div {
-    cursor: pointer;
-  }
-}
+// #side-nav {
+//   margin-top: 1.5rem;
+//   margin-right: 1rem;
+//   border-radius: 1rem;
+//   padding: 1rem;
+//   width: 7rem;
+//   color: rgb(180, 180, 180);
+//   div {
+//     cursor: pointer;
+//   }
+// }
 
 .project-selectors {
   color: rgb(180, 180, 180);
