@@ -349,7 +349,7 @@
 
   .constellation2 {
     background: black;
-    max-height: 200vh;
+    min-height: 200vh;
   }
   
   .star.tam3 {
@@ -405,13 +405,13 @@
         font-size: 6em;
     }
     .constellation2 {
-      max-height: 200vh;
+      min-height: 200vh;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .constellation2 {
-    max-height: 250vh;
+    min-height: 250vh;
   }
   .technology-container {
     width: 100%;
