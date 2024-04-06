@@ -8,7 +8,7 @@ img {
 }
 
 .back-button {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   button {
     border-radius: 20px;
     border: 3px solid rgba(205, 205, 205, 0.2);
@@ -26,36 +26,56 @@ img {
 .project-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 0;
+  gap: 2rem;
   img {
-    justify-self: center;
+    margin-top: 16px;
+    justify-self: flex-end;
     border-radius: 25px;
   }
-  div {
-    justify-self: center;
+  .project-description {
+    justify-self: flex-start;
+    padding: 0 30px;
+  }
+  .project-description {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    height: max-content;
+    padding: 2rem;
+    max-width: 500px;
   }
 }
 
-
-
+.project-link {
+  font-size: 1.5rem;
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color:#b30000;
+  }
+}
 
 .back-video {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -1;
 }
 @media (min-aspect-ratio: 16/9) {
-  .back-video{
+  .back-video {
     width: 100%;
     height: auto;
   }
 }
 
 @media (max-aspect-ratio: 16/9) {
-  .back-video{
+  .back-video {
     width: auto;
     height: 100%;
   }
@@ -81,7 +101,12 @@ header {
 
 /* Style button */
 header button {
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Semi-transparent white background */
   color: black; /* Button text color */
   padding: 0.5rem 1rem;
   border: none;
@@ -115,15 +140,6 @@ footer span {
 }
 
 article {
-  // width: 80%;
-  // min-height: 10rem;
-  // min-width: 15rem;
-  // padding: 1rem;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  // background-color: rgb(220, 219, 218);
-
   h2 {
     margin: 0;
   }
@@ -146,4 +162,13 @@ article {
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 750px) {
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

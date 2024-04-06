@@ -42,7 +42,7 @@
 }
 
 .overlay-content section:nth-child(2) {
-  margin-top: 50vh; /* Add margin-top to the second section */
+  margin-top: 40vh; /* Add margin-top to the second section */
 }
 
 .hidden-home {
@@ -54,11 +54,16 @@
   max-width: 600px;
   h1 {
     margin-bottom: 1rem;
+    font-size: 3rem;
   }
   p {
     text-indent: 50px;
     text-align: start;
     margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .tech {
+    font-size: 1rem;
   }
 }
 
@@ -68,6 +73,7 @@
   transform: translateX(0);
 
 }
+
 .technology-container {
   display: flex;
   flex-direction: column;
@@ -91,53 +97,41 @@
   justify-content: center;
 }
 
-.tech-hidden {
-  color: white;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 5px;
-  text-align: center;
-  position: relative;
-  // overflow: hidden;
-  z-index: 9999;
-  border: 3px solid rgba(205, 205, 205, 0.2);
-  background-attachment: fixed;
-  background-color: rgba(205, 205, 205, 0.09);
-}
-
-.tech-hidden::before {
-  border-radius: inherit;
-  content: "";
-  left: 0px;
+.tech .tech-hidden {
   opacity: 0;
-  transition: opacity 500ms;
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y), 
-    rgba(255, 255, 255, 0.10),
-    transparent 40%
-  );
-    position: absolute;
-    top: 0px;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
 }
 
-.tech-hidden:hover::before { 
-  opacity:1  
-  }
+.show .tech .tech-hidden {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
 
-  .tech .tech-hidden:nth-child(6) {
+.show .tech .tech-hidden:nth-child(6) {
   transition-delay: 200ms;
 }
-.tech .tech-hidden:nth-child(5) {
+
+.show .tech .tech-hidden:nth-child(5) {
   transition-delay: 400ms;
 }
-.tech .tech-hidden:nth-child(4) {
+
+.show .tech .tech-hidden:nth-child(4) {
   transition-delay: 600ms;
 }
-.tech .tech-hidden:nth-child(3) {
+
+.show .tech .tech-hidden:nth-child(3) {
   transition-delay: 800ms;
 }
-.tech .tech-hidden:nth-child(2) {
+
+.show .tech .tech-hidden:nth-child(2) {
   transition-delay: 1000ms;
+}
+
+.show .tech .tech-hidden:nth-child(1) {
+  transition-delay: 1200ms;
 }
 
 .home-section:before {
@@ -349,7 +343,7 @@
 
   .constellation2 {
     background: black;
-    max-height: 200vh;
+    min-height: 150vh;
   }
   
   .star.tam3 {
@@ -404,17 +398,37 @@
     #text {
         font-size: 6em;
     }
-    .constellation2 {
-      max-height: 200vh;
-    }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .constellation2 {
-    max-height: 250vh;
+    min-height: 160vh;
   }
   .technology-container {
     width: 100%;
+  }
+  .hidden-home {
+    width: 80%;
+    max-width: 600px;
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    p {
+      text-indent: 50px;
+      text-align: start;
+      margin-bottom: 1rem;
+      font-size: .75rem;
+    }
+    .tech {
+      font-size: .75rem;
+    }
+  }
+  .overlay-content {
+    width: 100%;
+  }
+  #text {
+    font-size: 4rem;
   }
 }
 

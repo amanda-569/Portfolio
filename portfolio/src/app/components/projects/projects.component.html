@@ -4,30 +4,42 @@
   </video>
   <div class="nav-container">
     <section id="side-nav">
-      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-      <div class="filter-container" *ngIf="filterString">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&#10006;</a>
+      <div class="filter-container" *ngIf="filterString; else noFilter">
         <h3>Filtered By:</h3>
         <div class="current-filter">
           {{ filterString }}
           <i class="fa fa-trash-o" (click)="clearFilters()"  routerLink="/projects"></i>
         </div>
       </div>
-        <h3>Categories</h3>
+      
+<ng-template #noFilter>
+  <div class="filter-container">
+    <h3>Filter By:</h3>
+  </div>
+</ng-template>
+        <h4>Categories</h4>
+        <div class="category-container">
           <div *ngFor="let category of categories" [routerLink]="['/projects/categories', category.slug]">
             {{ category.name }}
           </div>
-        <h3>Tags</h3>
-          <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]" >
+        </div>
+        
+        <h4>Tags</h4>
+        <div class="tag-container">
+          <div *ngFor="let tag of tags" [routerLink]="['/projects/tags', tag.slug]">
             {{ tag.name }}
           </div>
+        </div>
+        
       
     </section>
   </div>
-  <button class="openbtn" (click)="openNav()">&#9776;</button>
+  <button class="openbtn" (click)="openNav()"><i class="fa fa-filter"></i></button>
 
   <section id="projects">
     <article
-    class="vanillaTilt" ngTilt
+    class="vanillaTilt" ngTilt [maxTilt]="5"
       *ngFor="let project of projects | projectFilter : tagFilter"
       (click)="setSelectedProject(project)"
     >

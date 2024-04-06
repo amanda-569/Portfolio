@@ -26,6 +26,12 @@
   <router-outlet></router-outlet>
 </main>
 <footer>
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/in/amanda-mar/" target="_blank">
+      <i class="fa fa-brands fa-linkedin-square"></i>
+     
+    </a>
+  </div>
   <div class="page-links">
     <a
     routerLink="/"
@@ -42,5 +48,6 @@
     >Projects</a
   >
   </div>
-  &copy; {{ date.getFullYear() }} {{ author }}
+  <p>&copy; {{ date.getFullYear() }} {{ author }}</p>
+  
 </footer>
