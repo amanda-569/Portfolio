@@ -1,4 +1,7 @@
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
 @Component({
   selector: 'app-home',
@@ -42,6 +45,7 @@ export class HomeComponent implements OnInit {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
         } 
+        delay(100);
         // else {
         //   entry.target.classList.remove('show');
         // }

@@ -11,21 +11,26 @@
       [src]="'assets/images/' + project.image"
       alt="Image of {{project.title }}"
     />
-    <div>
+    <div class="project-description">
       <h2>{{project.title | uppercase }}</h2>
       <div>{{project.excerpt }}</div>
       <div [innerHTML]="project.body">{{project.body }}</div>
+      <div class="project-link" *ngIf="project.url">
+        <a href="{{project.url}}" target="_blank">Go to Live Project</a>
+      </div>
+      <div>
+        <div *ngIf="project.category">
+          Category: <span>{{project.category.name }}</span>
+        </div>
+        <div *ngIf="project.tags.length">
+          Tags:
+          <span *ngFor="let tag of project.tags">
+            {{ tag.name }}
+          </span>
+        </div>
+      </div>
     </div>
+    
   </section>
-  <!-- <footer>
-    <div *ngIf="project.category">
-      Category: <span>{{project.category.name }}</span>
-    </div>
-    <div *ngIf="project.tags.length">
-      Tags:
-      <span *ngFor="let tag of project.tags">
-        {{ tag.name }}
-      </span>
-    </div>
-  </footer> -->
+
 </article>

@@ -29,6 +29,7 @@
   color: #818181;
   display: block;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 
@@ -53,8 +54,11 @@
   background-color: #444;
 }
 
-.nav-container #side-nav:hover {
-  color: #f1f1f1;
+.category-container div:hover,
+.tag-container div:hover,
+.current-filter:hover {
+  color: #f1f1f1; /* Change color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 .back-video {
@@ -81,17 +85,11 @@
 }
 #projects {
   width: 80%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  grid-gap: 10px;
+  display: flex;
+  justify-content: center;
   justify-items: center;
-  margin-top: 2.5rem;
-}
-
-
-article {
-  width: calc(50% - 20px); /* Adjust the width of each project card */
-  margin: 10px; /* Add margin between project cards */
+  margin-top: 3.5rem;
+  flex-wrap: wrap;
 }
 
 /* Styles for the rest of your layout */
@@ -106,18 +104,6 @@ main {
   
 }
 
-// #side-nav {
-//   margin-top: 1.5rem;
-//   margin-right: 1rem;
-//   border-radius: 1rem;
-//   padding: 1rem;
-//   width: 7rem;
-//   color: rgb(180, 180, 180);
-//   div {
-//     cursor: pointer;
-//   }
-// }
-
 .project-selectors {
   color: rgb(180, 180, 180);
 }
@@ -129,8 +115,8 @@ main {
 }
 
 article {
-  width: 80%;
-  // min-height: 10rem;
+  width: 400px;
+  margin: 10px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -157,4 +143,11 @@ a:visited {
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 500px){
+  article {
+    width: 100%;
+    margin: 10px 0;
+  }
 }

@@ -51,6 +51,11 @@ app-root {
 }
 }
 
+header.scrolled {
+  background: rgb(36,36,36) !important;
+  opacity: 0.9 !important;
+}
+
 .home-section:before {
   content: '';
   position: absolute;
