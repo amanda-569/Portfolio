@@ -43,8 +43,20 @@ export const PROJECTS: Project[] = [
         "id": 4,
         "name": "C#",
         "slug": "csharp",
+        "pivot": { "projects_id": 4, "tags_id": 4 }
+      },
+      {
+        "id": 5,
+        "name": "SQL",
+        "slug": "sql",
         "pivot": { "projects_id": 4, "tags_id": 5 }
-      }
+      },
+      {
+        "id": 6,
+        "name": "MVC",
+        "slug": "mvc",
+        "pivot": { "projects_id": 4, "tags_id": 6 }
+      },
     ]
   },
   {

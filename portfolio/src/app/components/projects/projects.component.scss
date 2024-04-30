@@ -13,7 +13,7 @@
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 3; /* Stay on top */
   top: 0;
   left: 0;
   background-color: #111; /* Black*/
@@ -34,7 +34,7 @@
 
 
 #side-nav {
-  z-index: 2;
+  z-index: 3;
 }
 
 .openbtn {
@@ -48,6 +48,7 @@
   position: fixed;
   top: 3rem;
   left: 0;
+  z-index: 1;
 }
 
 .openbtn:hover {
@@ -99,7 +100,6 @@ main {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: flex-start;
-  min-width: 460px;
   width: 100%;
   
 }
