@@ -207,7 +207,7 @@
 
 #moon {
   position: absolute;
-  bottom: 0; /* Position the moon at the bottom */
+  top: 0; /* Position the moon at the bottom */
   right: 0; /* Position the moon at the right */
   width: 100%; /* Adjust moon size for smaller screens */
   height: auto; /* Maintain aspect ratio */
@@ -403,6 +403,9 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .constellation2 {
     min-height: 160vh;
+  }
+  #moon {
+    top: 85px;
   }
   .technology-container {
     width: 100%;
