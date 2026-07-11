@@ -197,7 +197,7 @@
 
 .hero-welcome > p {
   animation: welcome-glow 2.2s ease-out both,
-    welcome-float 6s ease-in-out 2.2s infinite;
+    welcome-float 5s ease-in-out 2.2s infinite;
   color: rgba(250, 252, 255, 0.94);
   font-family: 'Quicksand', sans-serif;
   font-size: clamp(4rem, 10vw, 8rem);
@@ -333,7 +333,7 @@ button:focus-visible .link-star {
   }
 
   50% {
-    transform: translateY(-7px);
+    transform: translateY(-10px);
   }
 }
 
