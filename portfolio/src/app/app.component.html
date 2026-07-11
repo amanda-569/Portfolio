@@ -1,53 +1,62 @@
-<header>
-  <nav>
-    <ul>
+<header [class.scrolled]="headerScrolled" [class.menu-open]="menuOpen">
+  <nav aria-label="Primary navigation">
+    <a class="brand" href="#home" (click)="scrollToSection($event, 'home')">
+      Amanda Mar
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="primary-links"
+      aria-label="Toggle navigation"
+      (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul id="primary-links" [class.open]="menuOpen">
       <li>
         <a
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          ariaCurrentWhenActive="page"
-          >Home</a
-        >
+          href="#about"
+          [class.active]="activeSection === 'about'"
+          (click)="scrollToSection($event, 'about')">About</a>
       </li>
       <li>
         <a
-          routerLink="/projects"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          ariaCurrentWhenActive="page"
-          >Projects</a
-        >
+          href="#technology"
+          [class.active]="activeSection === 'technology'"
+          (click)="scrollToSection($event, 'technology')">Skills</a>
+      </li>
+      <li>
+        <a
+          href="#projects"
+          [class.active]="activeSection === 'projects'"
+          (click)="scrollToSection($event, 'projects')">Projects</a>
       </li>
     </ul>
   </nav>
 </header>
+
 <main>
   <router-outlet></router-outlet>
 </main>
+
 <footer>
   <div class="social-icons">
-    <a href="https://www.linkedin.com/in/amanda-mar/" target="_blank">
+    <a
+      href="https://www.linkedin.com/in/amanda-mar/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Amanda Mar on LinkedIn">
       <i class="fa fa-brands fa-linkedin-square"></i>
-     
     </a>
   </div>
   <div class="page-links">
-    <a
-    routerLink="/"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-    ariaCurrentWhenActive="page"
-    >Home</a
-  >
-    <a
-    routerLink="/projects"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-    ariaCurrentWhenActive="page"
-    >Projects</a
-  >
+    <a href="#about" (click)="scrollToSection($event, 'about')">About</a>
+    <a href="#technology" (click)="scrollToSection($event, 'technology')">Skills</a>
+    <a href="#projects" (click)="scrollToSection($event, 'projects')">Projects</a>
   </div>
   <p>&copy; {{ date.getFullYear() }} {{ author }}</p>
-  
 </footer>

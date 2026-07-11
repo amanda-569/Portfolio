@@ -18,11 +18,11 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
-    "@fortawesome/fontawesome-svg-core": "^6.5.2",
-    "@geometricpanda/angular-tilt": "^0.4.0",
+    "@tsparticles/angular": "^4.3.1",
+    "@tsparticles/engine": "^4.3.1",
+    "@tsparticles/slim": "^4.3.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.2",
-    "vanilla-tilt": "^1.8.1",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {

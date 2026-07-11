@@ -1,69 +1,173 @@
 <div class="home-body">
-    <section class="home-section">
+    <section id="home" class="home-section">
         <!-- <img src="../../../assets/images/bg.jpg" alt="bg" id="bg"> -->
         <div class="night"></div>
-        <div class="constellation"></div>
+        <ngx-particles
+            id="hero-stars"
+            class="constellation"
+            [options]="starOptions">
+        </ngx-particles>
         <img src="../../../assets/images/moon.png" alt="moon" id="moon">
         <img src="../../../assets/images/mountain.png" alt="mountain" id="mountain">
         <img src="../../../assets/images/road.png" alt="road" id="road">
-        <h2 id="text">
-            <span>W</span>
-            <span>e</span>
-            <span>l</span>
-            <span>c</span>
-            <span>o</span>
-            <span>m</span>
-            <span>e</span>
-        </h2>
+        <div id="text" class="hero-copy">
+            <div class="hero-welcome">
+                <p>Welcome</p>
+                <span>Scroll to explore <span aria-hidden="true">&darr;</span></span>
+            </div>
+
+            <div class="hero-identity">
+                <h1>Amanda Mar</h1>
+                <p>
+                    Full-stack developer working across<br>
+                    interfaces, APIs, and everything between.
+                </p>
+                <a href="#projects" (click)="scrollToProjects($event)">
+                    View my work <span aria-hidden="true">&darr;</span>
+                </a>
+            </div>
+        </div>
 
     </section>
-    <div class="night2"></div>
-    <div class="constellation2"></div>
-    <div class="overlay-content">        
-        <section class="hidden-home">
+    <div class="night-content">
+        <ngx-particles
+            id="content-stars"
+            class="constellation2"
+            [options]="starOptions">
+        </ngx-particles>
+
+        <main class="overlay-content">
+        <section id="about" class="hidden-home">
             <h1>About Me</h1>
             <p>
-                Hello There! My name is Amanda and I enjoy learning how things on the web work under the hood, and how to build them myself. I was introduced to software development at my previous job in the mechanical engineering/construction industry, and was pleasantly surprised at how a few lines of well built code can automate tasks that would have previously taken me hours. 
+                Hi, I’m Amanda, a software engineer based in Vancouver.
             </p>
-            <p>Afterward, I made the decision to return to school to pursue a comprehensive education in full-stack software development. My goal was to acquire a deep understanding of both front-end and back-end technologies, enabling me to independently develop a wide range of applications.</p>
             <p>
-                Outside of software development, I am passionate about being active and in particular, enjoying the outdoors and beautiful mountains that are offered to us Vancouverites. You can catch me outdoors hiking, backpacking, star gazing, running, rock climbing, or road biking to destress and enjoy my free time.</p>
+                I’m naturally curious about how things work, especially the systems and logic operating behind the scenes of the web. I first discovered software development while working in the mechanical engineering and construction industry, where I saw how thoughtfully written code could automate hours of repetitive work. That experience changed the direction of my career and led me to pursue full-stack development.
+            </p>
+            <p>
+                Today, I primarily work on backend systems, building and maintaining the services and application logic that support real-world products. My work has involved integrating with external platforms, implementing access-control workflows, designing and consuming APIs, working with databases and complex queries, and tracing data through unfamiliar systems to diagnose production issues. I enjoy understanding how the different parts of an application communicate, identifying where behaviour or performance breaks down, and developing solutions that are reliable, maintainable, and grounded in how the product is actually used.
+            </p>
+            <p>
+                Outside of coding, movement is a major part of my life. You’ll often find me running, dancing, hiking, biking, climbing, or exploring the mountains around Vancouver. Whether I’m learning a new technical concept, refining choreography, or training toward a physical goal, I’m happiest when I’m challenged, improving, and creating something I’m proud of.
+            </p>
         </section>
 
-        <section class="hidden-home">
+        <section id="technology" class="hidden-home technology-section">
+            <p class="section-eyebrow">What I work with</p>
             <h1>Technology</h1>
-            <div class="technology-container">
-                <div class="row">
-                    <div class="tech">
-                        <div class="tech-hidden">HTML</div>
-                        <div class="tech-hidden">CSS/SCSS</div>
-                        <div class="tech-hidden">Javascript</div>
-                        <div class="tech-hidden">Typescript</div>
-                        <div class="tech-hidden">C#</div>
-                        <div class="tech-hidden">Python</div>
-                        
+            <p class="technology-intro">
+                A full-stack toolkit shaped by curiosity, practical projects, and a love of understanding how things work.
+            </p>
+
+            <div class="technology-grid">
+                <article
+                    class="skill-group"
+                    *ngFor="let group of skillGroups; let index = index"
+                    [style.--group-delay]="index * 120 + 'ms'"
+                    [style.--group-rgb]="group.accent">
+                    <svg class="skill-constellation" viewBox="0 0 240 150" aria-hidden="true" [ngSwitch]="index">
+                        <!-- Phoenix: simplified from the IAU constellation pattern -->
+                        <g *ngSwitchCase="0">
+                            <polyline points="26,85 79,43 137,65 205,42"></polyline>
+                            <polyline points="79,43 101,106 160,125 205,42"></polyline>
+                            <circle cx="26" cy="85" r="2"></circle>
+                            <circle cx="79" cy="43" r="2.8"></circle>
+                            <circle cx="101" cy="106" r="1.7"></circle>
+                            <circle cx="137" cy="65" r="2"></circle>
+                            <circle cx="160" cy="125" r="1.8"></circle>
+                            <circle cx="205" cy="42" r="2.3"></circle>
+                        </g>
+
+                        <!-- Lyra: Vega and the small lyre parallelogram -->
+                        <g *ngSwitchCase="1">
+                            <polyline points="42,27 91,63 158,49 199,104 121,124 91,63"></polyline>
+                            <circle cx="42" cy="27" r="3"></circle>
+                            <circle cx="91" cy="63" r="2"></circle>
+                            <circle cx="158" cy="49" r="1.8"></circle>
+                            <circle cx="199" cy="104" r="2"></circle>
+                            <circle cx="121" cy="124" r="1.8"></circle>
+                        </g>
+
+                        <!-- Andromeda: the long Alpheratz–Mirach–Almach chain -->
+                        <g *ngSwitchDefault>
+                            <polyline points="27,106 79,83 135,59 207,34"></polyline>
+                            <polyline points="79,83 98,126"></polyline>
+                            <polyline points="135,59 167,111"></polyline>
+                            <circle cx="27" cy="106" r="2.7"></circle>
+                            <circle cx="79" cy="83" r="2.3"></circle>
+                            <circle cx="98" cy="126" r="1.6"></circle>
+                            <circle cx="135" cy="59" r="2.5"></circle>
+                            <circle cx="167" cy="111" r="1.8"></circle>
+                            <circle cx="207" cy="34" r="2.2"></circle>
+                        </g>
+                    </svg>
+                    <span class="constellation-name" aria-hidden="true">{{ group.constellation }}</span>
+                    <div class="skill-group-heading">
+                        <span class="skill-group-number" aria-hidden="true">0{{ index + 1 }}</span>
+                        <span class="skill-group-icon" aria-hidden="true" [ngSwitch]="index">
+                            <svg *ngSwitchCase="0" viewBox="0 0 24 24"><path d="M4 6.5h16v11H4z M8 17.5l-2 3m10-3 2 3"></path></svg>
+                            <svg *ngSwitchCase="1" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="12" cy="18" r="2"></circle><path d="M8 7l8-1m1 2-4 8M7 9l4 7"></path></svg>
+                            <svg *ngSwitchDefault viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M15 9l-2 5-5 2 2-5z"></path></svg>
+                        </span>
+                        <h2>{{ group.title }}</h2>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="tech">
-                        <div class="tech-hidden">Express</div>
-                        <div class="tech-hidden">MongoDb</div>
-                        <div class="tech-hidden">Git/Github</div>
-                        <div class="tech-hidden">Figma</div>
-                        <div class="tech-hidden">React</div>
-                        <div class="tech-hidden">NodeJS</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="tech">
-                        <div class="tech-hidden">Angular</div>
-                        <div class="tech-hidden">C</div>
-                        <div class="tech-hidden">SQL</div>
-                        <div class="tech-hidden">MVC</div>
-                        <div class="tech-hidden">Android Studio</div>
-                        <div class="tech-hidden">AWS</div>
-                    </div>
-                </div>
+                    <p>{{ group.description }}</p>
+                    <ul [attr.aria-label]="group.title + ' skills'">
+                        <li *ngFor="let skill of group.skills">
+                            <span>{{ skill }}</span>
+                        </li>
+                    </ul>
+                </article>
             </div>
         </section>
-        </div>
+
+        <section id="projects" class="hidden-home projects-section">
+            <h1>Projects</h1>
+            <p class="projects-intro">
+                A selection of projects I built while learning full-stack development.
+            </p>
+
+            <div class="projects-grid">
+                <article
+                    class="home-project-card"
+                    [style.transform]="cardTransforms[project.id] || restingCardTransform"
+                    (mousemove)="tiltProjectCard($event, project.id)"
+                    (mouseleave)="resetProjectCard(project.id)"
+                    *ngFor="let project of projects">
+                    <img
+                        *ngIf="project.image"
+                        class="project-image-layer"
+                        [src]="'assets/images/' + project.image"
+                        [alt]="'Preview of ' + project.title"
+                        loading="lazy"
+                        width="500"
+                        height="500">
+
+                    <div
+                        class="project-card-content">
+                        <p class="project-category" *ngIf="project.category">
+                            {{ project.category.name }}
+                        </p>
+                        <h2>{{ project.title }}</h2>
+                        <p>{{ project.excerpt }}</p>
+
+                        <div class="project-tags" *ngIf="project.tags.length">
+                            <span *ngFor="let tag of project.tags">{{ tag.name }}</span>
+                        </div>
+
+                        <a
+                            *ngIf="project.url"
+                            class="project-link"
+                            [href]="project.url"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Visit project <span aria-hidden="true">&nearr;</span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        </main>
+    </div>
+</div>

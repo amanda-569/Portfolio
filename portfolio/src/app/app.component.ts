@@ -1,87 +1,89 @@
-import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-
-import { ProjectsComponent } from './components/projects/projects.component';
-import { ProjectComponent } from './components/project/project.component';
-
-import { CategoriesComponent } from './components/categories/categories.component';
-import { TagsComponent } from './components/tags/tags.component';
-
-import { Category } from './models/category';
-import { CATEGORY } from './data/categories';
-import { Tag } from './models/tag';
-import { TAGS } from './data/tags';
-import { Project } from './models/project';
-
-import { ProjectFilterPipe } from './pipes/project-filter.pipe';
+import { Component, HostListener, OnDestroy } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    ProjectFilterPipe,
-    ProjectsComponent,
-    ProjectComponent,
-    CategoriesComponent,
-    TagsComponent
-  ],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'Portfolio';
-  date = new Date();
-  author = 'Amanda Mar';
-  categories: Category[] = CATEGORY;
-  categoryFilter: Category | undefined;
-  tagFilter: Tag | undefined;
-  tags: Tag[] = TAGS;
+export class AppComponent implements OnDestroy {
+  readonly date = new Date();
+  readonly author = 'Amanda Mar';
 
-  setCategoryFilter(category: Category) {
-    this.categoryFilter = category;
-    this.tagFilter = undefined;
+  activeSection = 'home';
+  headerScrolled = false;
+  menuOpen = false;
+  private scrollFrame?: number;
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    if (this.scrollFrame !== undefined) {
+      return;
+    }
+
+    this.scrollFrame = requestAnimationFrame(() => {
+      this.updateNavigation();
+      this.scrollFrame = undefined;
+    });
   }
 
-  setTagFilter(tag: Tag) {
-    this.tagFilter = tag;
-    this.categoryFilter = undefined;
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
   }
 
-  clearFilters() {
-    this.categoryFilter = undefined;
-    this.tagFilter = undefined;
+  closeMenu(): void {
+    this.menuOpen = false;
   }
 
-  selectedProject?: Project;
+  scrollToSection(event: Event, sectionId: string): void {
+    event.preventDefault();
+    this.closeMenu();
 
-  setSelectedProject(project: Project) {
-    this.selectedProject = project;
-  }
+    requestAnimationFrame(() => {
+      const section = document.getElementById(sectionId);
 
-  clearSelectedProject() {
-    this.selectedProject = undefined;
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: Event) {
-    const header = document.querySelector('header');
-    const main = document.querySelector('main');
-
-    // Check if header and main are not null before proceeding
-    if (header && main) {
-      const mainTop = main.offsetTop;
-      const scrolled = window.scrollY;
-
-      if (scrolled > mainTop) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+      if (!section) {
+        return;
       }
+
+      const header = document.querySelector<HTMLElement>('header');
+      const headerHeight = header?.offsetHeight ?? 68;
+      const breathingRoom = 36;
+      const top = section.getBoundingClientRect().top + window.scrollY
+        - headerHeight - breathingRoom;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      window.history.replaceState(null, '', `#${sectionId}`);
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      });
+    });
+  }
+
+  private updateNavigation(): void {
+    this.headerScrolled = window.scrollY > 48;
+
+    const sections = ['projects', 'technology', 'about'];
+    const marker = window.innerHeight * 0.35;
+    this.activeSection = 'home';
+
+    for (const id of sections) {
+      const section = document.getElementById(id);
+
+      if (section && section.getBoundingClientRect().top <= marker) {
+        this.activeSection = id;
+        break;
+      }
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.scrollFrame !== undefined) {
+      cancelAnimationFrame(this.scrollFrame);
     }
   }
 }
