@@ -12,6 +12,24 @@ header {
   z-index: 100;
 }
 
+.skip-link {
+  background: #fff4dc;
+  border-radius: 0 0 0.5rem 0.5rem;
+  color: #050713;
+  font-weight: 600;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  position: fixed;
+  top: 0;
+  transform: translateY(-120%);
+  transition: transform 160ms ease;
+  z-index: 1001;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 header.scrolled,
 header.menu-open {
   backdrop-filter: blur(14px);
@@ -101,15 +119,51 @@ main {
 
 footer {
   align-self: flex-end;
-  background: #050713;
-  border-top: 1px solid rgba(220, 231, 255, 0.12);
+  background: transparent;
   box-sizing: border-box;
   color: white;
   font-size: 0.8rem;
-  padding: 2rem 1rem;
+  isolation: isolate;
+  margin-top: clamp(-18rem, -18vw, -10rem);
+  min-height: clamp(24rem, 34vw, 32rem);
+  padding: clamp(16rem, 24vw, 23rem) 1rem 2.25rem;
+  position: relative;
   text-align: center;
   width: 100%;
   z-index: 2;
+}
+
+footer::before,
+footer::after {
+  content: '';
+  inset: 0;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+footer::before {
+  background: url('/assets/images/mountain.png') center bottom / 100% 100% no-repeat;
+  filter: brightness(0.17) saturate(1.35) sepia(0.12) hue-rotate(178deg);
+  opacity: 0.92;
+  z-index: -2;
+}
+
+footer::after {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(2, 3, 10, 0.08) 28%,
+    rgba(2, 3, 10, 0.62) 62%,
+    #02030a 90%
+  );
+  z-index: -1;
+}
+
+footer > * {
+  position: relative;
+  z-index: 1;
 }
 
 .social-icons {
@@ -118,19 +172,28 @@ footer {
 }
 
 .social-icons a {
-  color: white;
+  color: rgba(226, 236, 255, 0.82);
+  filter: drop-shadow(0 0 0.65rem rgba(129, 171, 239, 0.2));
 }
 
 .page-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.25rem;
   justify-content: center;
   margin-bottom: 0.75rem;
 }
 
 .page-links a {
-  color: rgb(179, 179, 179);
+  color: rgba(211, 222, 244, 0.64);
   text-decoration: none;
+}
+
+.page-links a:hover,
+.page-links a:focus-visible,
+.social-icons a:hover,
+.social-icons a:focus-visible {
+  color: white;
 }
 
 @media screen and (max-width: 640px) {
@@ -181,5 +244,15 @@ footer {
 
   nav li a {
     font-size: 1.1rem;
+  }
+
+  footer {
+    margin-top: -10rem;
+    min-height: 22rem;
+    padding: 13.5rem 1rem 2rem;
+  }
+
+  .page-links {
+    gap: 0.75rem 1rem;
   }
 }
