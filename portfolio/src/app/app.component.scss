@@ -145,7 +145,7 @@ footer::after {
 
 footer::before {
   background: url('/assets/images/mountain.png') center bottom / 100% 100% no-repeat;
-  filter: brightness(0.17) saturate(1.35) sepia(0.12) hue-rotate(178deg);
+  filter: brightness(0.3) saturate(1.35) sepia(0.12) hue-rotate(178deg);
   opacity: 0.92;
   z-index: -2;
 }

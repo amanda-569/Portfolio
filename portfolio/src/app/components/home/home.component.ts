@@ -151,6 +151,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   };
   readonly contentStarOptions: ISourceOptions = {
     ...this.starOptions,
+    detectRetina: !this.compactSky,
     particles: {
       ...this.starOptions.particles,
       groups: {
@@ -276,6 +277,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     document.body.style.overflow = '';
 
     requestAnimationFrame(() => this.projectTrigger?.focus());
+  }
+
+  openProjectLink(event: Event, url: string): void {
+    event.preventDefault();
+    event.stopPropagation();
+    window.location.assign(url);
   }
 
   @HostListener('document:keydown', ['$event'])

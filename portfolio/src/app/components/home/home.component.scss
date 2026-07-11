@@ -894,7 +894,7 @@ button:focus-visible .link-star {
 
 .skill-group > p {
   color: rgba(255, 255, 255, 0.68);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   margin-bottom: 1.25rem;
   min-height: 3.75rem;
   position: relative;
@@ -1162,6 +1162,10 @@ button:focus-visible .link-star {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem 1.4rem;
+  pointer-events: auto;
+  position: relative;
+  transform: translateZ(24px);
+  z-index: 4;
 }
 
 .project-link,
@@ -1178,6 +1182,13 @@ button:focus-visible .link-star {
   border: 0;
   cursor: pointer;
   padding: 0;
+}
+
+.project-details-button,
+.project-link {
+  pointer-events: auto;
+  position: relative;
+  z-index: 5;
 }
 
 .project-details-button:hover,
@@ -1348,10 +1359,6 @@ button:focus-visible .link-star {
 
   .projects-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .constellation-name {
-    display: none;
   }
 
   .experience-heading {
