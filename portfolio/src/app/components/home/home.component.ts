@@ -11,6 +11,7 @@ import { NgParticlesService, NgxParticlesModule } from '@tsparticles/angular';
 import type { ISourceOptions } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
 import { PROJECTS } from '../../data/projects';
+import type { Project } from '../../models/project';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ import { PROJECTS } from '../../data/projects';
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly projects = PROJECTS;
+  selectedProject: Project | null = null;
   readonly skillGroups = [
     {
       title: 'Frontend',
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
   readonly restingCardTransform =
-    'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    'perspective(680px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
   cardTransforms: Record<number, string> = {};
   private revealObserver?: IntersectionObserver;
   private scrollFrame?: number;
@@ -66,30 +68,35 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private heroCopy?: HTMLElement;
   private welcomeLayer?: HTMLElement;
   private identityLayer?: HTMLElement;
+  private projectTrigger?: HTMLElement;
   private pointerHandlers: Array<{
     element: HTMLElement;
     handler: (event: PointerEvent) => void;
   }> = [];
+  private readonly compactSky = window.matchMedia('(max-width: 700px)').matches;
+  private readonly reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   readonly starOptions: ISourceOptions = {
     fullScreen: { enable: false },
     fpsLimit: 40,
     background: { color: { value: 'transparent' } },
     particles: {
       number: {
-        value: 300,
-        density: { enable: true },
+        value: this.compactSky ? 180 : 300,
+        density: { enable: !this.compactSky },
       },
       color: {
         value: ['#ffffff', '#dce7ff', '#fff4dc'],
       },
       shape: { type: 'circle' },
       size: {
-        value: { min: 0.4, max: 1.4 },
+        value: this.compactSky
+          ? { min: 0.8, max: 1.9 }
+          : { min: 0.4, max: 1.4 },
       },
       opacity: {
-        value: { min: 0.08, max: 1 },
+        value: { min: this.compactSky ? 0.24 : 0.08, max: 1 },
         animation: {
-          enable: true,
+          enable: !this.reduceMotion,
           speed: { min: 0.8, max: 2.2 },
           mode: 'auto',
           startValue: 'random',
@@ -99,12 +106,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       move: { enable: false },
       groups: {
         distant: {
-          number: { value: 270 },
+          number: { value: this.compactSky ? 164 : 270 },
           shape: { type: 'circle' },
-          size: { value: { min: 0.4, max: 1.4 } },
+          size: {
+            value: this.compactSky
+              ? { min: 0.8, max: 1.9 }
+              : { min: 0.4, max: 1.4 },
+          },
         },
         sparkle: {
-          number: { value: 16 },
+          number: { value: this.compactSky ? 14 : 20 },
           shape: {
             type: 'star',
             options: {
@@ -114,15 +125,19 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
               },
             },
           },
-          size: { value: { min: 0.75, max: 1.5 } },
+          size: {
+            value: this.compactSky
+              ? { min: 0.85, max: 1.45 }
+              : { min: 0.65, max: 1.25 },
+          },
           rotate: {
             value: 45,
             animation: { enable: false },
           },
           opacity: {
-            value: { min: 0.12, max: 1 },
+            value: { min: 0.28, max: 1 },
             animation: {
-              enable: true,
+              enable: !this.reduceMotion,
               speed: { min: 0.6, max: 1.6 },
               mode: 'auto',
               startValue: 'random',
@@ -133,6 +148,24 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       },
     },
     detectRetina: true,
+  };
+  readonly contentStarOptions: ISourceOptions = {
+    ...this.starOptions,
+    particles: {
+      ...this.starOptions.particles,
+      groups: {
+        ...this.starOptions.particles?.groups,
+        sparkle: {
+          ...this.starOptions.particles?.groups?.['sparkle'],
+          number: { value: this.compactSky ? 48 : 110 },
+          size: {
+            value: this.compactSky
+              ? { min: 1.05, max: 1.85 }
+              : { min: 0.9, max: 1.8 },
+          },
+        },
+      },
+    },
   };
 
   constructor(
@@ -181,7 +214,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setupSectionLighting(root: HTMLElement): void {
-    root.querySelectorAll<HTMLElement>('.hidden-home, .skill-group').forEach(element => {
+    root.querySelectorAll<HTMLElement>('.skill-group').forEach(element => {
       const handler = (event: PointerEvent) => {
         const bounds = element.getBoundingClientRect();
         element.style.setProperty('--mouse-x', `${event.clientX - bounds.left}px`);
@@ -194,11 +227,20 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   tiltProjectCard(event: MouseEvent, projectId: number): void {
+    if (this.compactSky || this.reduceMotion) {
+      return;
+    }
+
     const card = event.currentTarget as HTMLElement;
     const bounds = card.getBoundingClientRect();
     const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
     const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
-    const maxTilt = 5;
+    const pointerX = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const pointerY = ((event.clientY - bounds.top) / bounds.height) * 100;
+    const maxTilt = 6;
+
+    card.style.setProperty('--glass-x', `${pointerX.toFixed(1)}%`);
+    card.style.setProperty('--glass-y', `${pointerY.toFixed(1)}%`);
 
     // Positive Y rotation raises the right edge; negative X rotation raises
     // the bottom edge. The card therefore leans toward the pointer.
@@ -206,28 +248,92 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const rotateX = vertical * maxTilt * -2;
 
     this.cardTransforms[projectId] =
-      `perspective(800px) rotateX(${rotateX.toFixed(2)}deg) ` +
-      `rotateY(${rotateY.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`;
+      `perspective(680px) rotateX(${rotateX.toFixed(2)}deg) ` +
+      `rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
   }
 
-  resetProjectCard(projectId: number): void {
+  resetProjectCard(event: MouseEvent, projectId: number): void {
+    const card = event.currentTarget as HTMLElement;
+    card.style.setProperty('--glass-x', '50%');
+    card.style.setProperty('--glass-y', '35%');
     this.cardTransforms[projectId] = this.restingCardTransform;
   }
 
-  scrollToProjects(event: Event): void {
-    event.preventDefault();
-    const projects = document.getElementById('projects');
+  openProject(project: Project, event?: Event): void {
+    this.projectTrigger = event?.currentTarget as HTMLElement | undefined;
+    this.selectedProject = project;
+    document.body.style.overflow = 'hidden';
 
-    if (!projects) {
+    requestAnimationFrame(() => {
+      (this.el.nativeElement as HTMLElement)
+        .querySelector<HTMLElement>('.project-modal-close')
+        ?.focus();
+    });
+  }
+
+  closeProject(): void {
+    this.selectedProject = null;
+    document.body.style.overflow = '';
+
+    requestAnimationFrame(() => this.projectTrigger?.focus());
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleModalKeyboard(event: KeyboardEvent): void {
+    if (!this.selectedProject) {
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      this.closeProject();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const modal = (this.el.nativeElement as HTMLElement).querySelector<HTMLElement>('.project-modal');
+    const focusable = Array.from(
+      modal?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      ) ?? []
+    );
+
+    if (!focusable.length) {
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  scrollToProjects(event: Event): void {
+    this.scrollToSection(event, 'projects');
+  }
+
+  scrollToSection(event: Event, sectionId: string): void {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+
+    if (!section) {
       return;
     }
 
     const headerHeight = document.querySelector<HTMLElement>('header')?.offsetHeight ?? 68;
-    const top = projects.getBoundingClientRect().top + window.scrollY
+    const top = section.getBoundingClientRect().top + window.scrollY
       - headerHeight - 36;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    window.history.replaceState(null, '', '#projects');
+    window.history.replaceState(null, '', `#${sectionId}`);
     window.scrollTo({
       top: Math.max(0, top),
       behavior: reduceMotion ? 'auto' : 'smooth',
@@ -299,6 +405,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    document.body.style.overflow = '';
     this.revealObserver?.disconnect();
     this.pointerHandlers.forEach(({ element, handler }) => {
       element.removeEventListener('pointermove', handler);

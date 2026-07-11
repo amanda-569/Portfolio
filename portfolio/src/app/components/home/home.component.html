@@ -7,13 +7,15 @@
             class="constellation"
             [options]="starOptions">
         </ngx-particles>
-        <img src="../../../assets/images/moon.png" alt="moon" id="moon">
-        <img src="../../../assets/images/mountain.png" alt="mountain" id="mountain">
-        <img src="../../../assets/images/road.png" alt="road" id="road">
+        <span class="shooting-star" aria-hidden="true"></span>
+        <div class="mountain-haze" aria-hidden="true"></div>
+        <img src="../../../assets/images/moon.png" alt="" id="moon">
+        <img src="../../../assets/images/mountain.png" alt="" id="mountain">
+        <img src="../../../assets/images/road.png" alt="" id="road">
         <div id="text" class="hero-copy">
             <div class="hero-welcome">
                 <p>Welcome</p>
-                <span>Scroll to explore <span aria-hidden="true">&darr;</span></span>
+                <span>Scroll to explore <span class="link-star" aria-hidden="true">&#10022;</span></span>
             </div>
 
             <div class="hero-identity">
@@ -22,9 +24,14 @@
                     Full-stack developer working across<br>
                     interfaces, APIs, and everything between.
                 </p>
-                <a href="#projects" (click)="scrollToProjects($event)">
-                    View my work <span aria-hidden="true">&darr;</span>
-                </a>
+                <div class="hero-actions">
+                    <a href="#experience" (click)="scrollToSection($event, 'experience')">
+                        View experience <span class="link-star" aria-hidden="true">&#10022;</span>
+                    </a>
+                    <a href="#contact" (click)="scrollToSection($event, 'contact')">
+                        Contact me <span class="link-star" aria-hidden="true">&#10022;</span>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -33,24 +40,63 @@
         <ngx-particles
             id="content-stars"
             class="constellation2"
-            [options]="starOptions">
+            [options]="contentStarOptions">
         </ngx-particles>
 
         <main class="overlay-content">
-        <section id="about" class="hidden-home">
-            <h1>About Me</h1>
-            <p>
-                Hi, I’m Amanda, a software engineer based in Vancouver.
-            </p>
-            <p>
-                I’m naturally curious about how things work, especially the systems and logic operating behind the scenes of the web. I first discovered software development while working in the mechanical engineering and construction industry, where I saw how thoughtfully written code could automate hours of repetitive work. That experience changed the direction of my career and led me to pursue full-stack development.
-            </p>
-            <p>
-                Today, I primarily work on backend systems, building and maintaining the services and application logic that support real-world products. My work has involved integrating with external platforms, implementing access-control workflows, designing and consuming APIs, working with databases and complex queries, and tracing data through unfamiliar systems to diagnose production issues. I enjoy understanding how the different parts of an application communicate, identifying where behaviour or performance breaks down, and developing solutions that are reliable, maintainable, and grounded in how the product is actually used.
-            </p>
-            <p>
-                Outside of coding, movement is a major part of my life. You’ll often find me running, dancing, hiking, biking, climbing, or exploring the mountains around Vancouver. Whether I’m learning a new technical concept, refining choreography, or training toward a physical goal, I’m happiest when I’m challenged, improving, and creating something I’m proud of.
-            </p>
+        <section id="experience" class="hidden-home experience-section">
+            <p class="section-eyebrow">Professional experience</p>
+            <h1>Experience</h1>
+
+            <article class="experience-card">
+                <div class="experience-heading">
+                    <div>
+                        <p class="experience-role">Software Engineer</p>
+                        <a
+                            class="experience-company"
+                            href="https://www.linkedin.com/company/operto/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Operto Guest Technologies <span class="link-star" aria-hidden="true">&#10022;</span>
+                        </a>
+                    </div>
+                    <p class="experience-date">2024–Present</p>
+                </div>
+
+                <p class="experience-summary">
+                    Backend engineering for reservation, access-control, and property-management systems.
+                </p>
+
+                <ul class="experience-highlights">
+                    <li>
+                        Developed backend workflows for reservations, room transfers, guest access codes, and connected-device events across multiple services.
+                    </li>
+                    <li>
+                        Extended APIs and database query paths for new product requirements while preserving existing filtering, pagination, and integration behaviour.
+                    </li>
+                    <li>
+                        Diagnosed production incidents across service logs, database records, authentication claims, webhook payloads, and external provider responses.
+                    </li>
+                    <li>
+                        Built and maintained integrations with property-management, smart-lock, and building-automation platforms, including authentication, event processing, and data synchronization.
+                    </li>
+                </ul>
+
+                <div class="experience-stack" aria-label="Technologies used professionally">
+                    <span>PHP</span>
+                    <span>C#</span>
+                    <span>Java</span>
+                    <span>ASP.NET Core</span>
+                    <span>Wolverine</span>
+                    <span>Marten</span>
+                    <span>Dapper</span>
+                    <span>PostgreSQL</span>
+                    <span>AWS Cognito</span>
+                    <span>REST APIs</span>
+                    <span>Webhooks</span>
+                    <span>Event-driven systems</span>
+                </div>
+            </article>
         </section>
 
         <section id="technology" class="hidden-home technology-section">
@@ -67,39 +113,46 @@
                     [style.--group-delay]="index * 120 + 'ms'"
                     [style.--group-rgb]="group.accent">
                     <svg class="skill-constellation" viewBox="0 0 240 150" aria-hidden="true" [ngSwitch]="index">
-                        <!-- Phoenix: simplified from the IAU constellation pattern -->
+                        <!-- Phoenix: fuller winged pattern from the chosen reference -->
                         <g *ngSwitchCase="0">
-                            <polyline points="26,85 79,43 137,65 205,42"></polyline>
-                            <polyline points="79,43 101,106 160,125 205,42"></polyline>
-                            <circle cx="26" cy="85" r="2"></circle>
-                            <circle cx="79" cy="43" r="2.8"></circle>
-                            <circle cx="101" cy="106" r="1.7"></circle>
-                            <circle cx="137" cy="65" r="2"></circle>
-                            <circle cx="160" cy="125" r="1.8"></circle>
-                            <circle cx="205" cy="42" r="2.3"></circle>
+                            <polyline points="28,31 70,57 96,72 160,19 215,70 96,72"></polyline>
+                            <polyline points="28,31 28,105 96,136 96,72"></polyline>
+                            <circle cx="28" cy="31" r="2.2"></circle>
+                            <circle cx="70" cy="57" r="1.8"></circle>
+                            <circle cx="96" cy="72" r="2.7"></circle>
+                            <circle cx="160" cy="19" r="3"></circle>
+                            <circle cx="158" cy="40" r="1.4"></circle>
+                            <circle cx="215" cy="70" r="2.2"></circle>
+                            <circle cx="28" cy="105" r="2"></circle>
+                            <circle cx="96" cy="136" r="1.8"></circle>
                         </g>
 
-                        <!-- Lyra: Vega and the small lyre parallelogram -->
+                        <!-- Lyra: Vega attached to the lyre parallelogram -->
                         <g *ngSwitchCase="1">
-                            <polyline points="42,27 91,63 158,49 199,104 121,124 91,63"></polyline>
-                            <circle cx="42" cy="27" r="3"></circle>
-                            <circle cx="91" cy="63" r="2"></circle>
-                            <circle cx="158" cy="49" r="1.8"></circle>
-                            <circle cx="199" cy="104" r="2"></circle>
-                            <circle cx="121" cy="124" r="1.8"></circle>
+                            <polyline points="194,20 140,48 76,65 42,132 106,116 140,48"></polyline>
+                            <circle cx="194" cy="20" r="3"></circle>
+                            <circle cx="140" cy="48" r="2"></circle>
+                            <circle cx="76" cy="65" r="1.8"></circle>
+                            <circle cx="42" cy="132" r="2.2"></circle>
+                            <circle cx="106" cy="116" r="2.3"></circle>
                         </g>
 
-                        <!-- Andromeda: the long Alpheratz–Mirach–Almach chain -->
+                        <!-- Andromeda: Wikimedia map spine with chain branches -->
                         <g *ngSwitchDefault>
-                            <polyline points="27,106 79,83 135,59 207,34"></polyline>
-                            <polyline points="79,83 98,126"></polyline>
-                            <polyline points="135,59 167,111"></polyline>
-                            <circle cx="27" cy="106" r="2.7"></circle>
-                            <circle cx="79" cy="83" r="2.3"></circle>
-                            <circle cx="98" cy="126" r="1.6"></circle>
-                            <circle cx="135" cy="59" r="2.5"></circle>
-                            <circle cx="167" cy="111" r="1.8"></circle>
-                            <circle cx="207" cy="34" r="2.2"></circle>
+                            <polyline points="24,35 94,75 145,105 215,115"></polyline>
+                            <polyline points="145,105 150,82 205,35 200,25 200,10"></polyline>
+                            <polyline points="145,105 148,117 130,140 105,145"></polyline>
+                            <circle cx="24" cy="35" r="2.7"></circle>
+                            <circle cx="94" cy="75" r="2.5"></circle>
+                            <circle cx="145" cy="105" r="2.2"></circle>
+                            <circle cx="215" cy="115" r="2.8"></circle>
+                            <circle cx="150" cy="82" r="1.7"></circle>
+                            <circle cx="205" cy="35" r="1.8"></circle>
+                            <circle cx="200" cy="25" r="1.5"></circle>
+                            <circle cx="200" cy="10" r="1.6"></circle>
+                            <circle cx="148" cy="117" r="1.5"></circle>
+                            <circle cx="130" cy="140" r="1.7"></circle>
+                            <circle cx="105" cy="145" r="1.6"></circle>
                         </g>
                     </svg>
                     <span class="constellation-name" aria-hidden="true">{{ group.constellation }}</span>
@@ -123,9 +176,10 @@
         </section>
 
         <section id="projects" class="hidden-home projects-section">
-            <h1>Projects</h1>
+            <p class="section-eyebrow">Foundational work</p>
+            <h1>Earlier Projects</h1>
             <p class="projects-intro">
-                A selection of projects I built while learning full-stack development.
+                A selection of projects from my training that established my full-stack foundation.
             </p>
 
             <div class="projects-grid">
@@ -133,7 +187,7 @@
                     class="home-project-card"
                     [style.transform]="cardTransforms[project.id] || restingCardTransform"
                     (mousemove)="tiltProjectCard($event, project.id)"
-                    (mouseleave)="resetProjectCard(project.id)"
+                    (mouseleave)="resetProjectCard($event, project.id)"
                     *ngFor="let project of projects">
                     <img
                         *ngIf="project.image"
@@ -156,18 +210,108 @@
                             <span *ngFor="let tag of project.tags">{{ tag.name }}</span>
                         </div>
 
-                        <a
-                            *ngIf="project.url"
-                            class="project-link"
-                            [href]="project.url"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            Visit project <span aria-hidden="true">&nearr;</span>
-                        </a>
+                        <div class="project-actions">
+                            <button type="button" class="project-details-button" (click)="openProject(project, $event)">
+                                View details <span class="link-star" aria-hidden="true">&#10022;</span>
+                            </button>
+                            <a
+                                *ngIf="project.url"
+                                class="project-link"
+                                [href]="project.url"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Visit project <span class="link-star" aria-hidden="true">&#10022;</span>
+                            </a>
+                        </div>
                     </div>
                 </article>
             </div>
         </section>
+
+        <section id="about" class="hidden-home about-section">
+            <h1>About Me</h1>
+            <p>
+                Hi, I’m Amanda, a software engineer based in Vancouver.
+            </p>
+            <p>
+                I’m naturally curious about how things work, especially the systems and logic operating behind the scenes of the web. I first discovered software development while working in the mechanical engineering and construction industry, where I saw how thoughtfully written code could automate hours of repetitive work. That experience changed the direction of my career and led me to pursue full-stack development.
+            </p>
+            <p>
+                Outside of coding, movement is a major part of my life. You’ll often find me running, dancing, hiking, biking, climbing, or exploring the mountains around Vancouver. Whether I’m learning a new technical concept, refining choreography, or training toward a physical goal, I’m happiest when I’m challenged, improving, and creating something I’m proud of.
+            </p>
+            <p>
+                This site’s night sky was inspired by my first backpacking trip, when stepping outside my comfort zone led me to something more beautiful than I had imagined.
+            </p>
+        </section>
+
+        <section id="contact" class="hidden-home contact-section">
+            <p class="section-eyebrow">Let’s connect</p>
+            <h1>Thoughtful software starts with a conversation.</h1>
+            <p>
+                I’m always happy to connect with people building useful, reliable products.
+            </p>
+            <div class="contact-actions">
+                <a class="contact-link" href="mailto:msamandamar@gmail.com">
+                    Email me <span class="link-star" aria-hidden="true">&#10022;</span>
+                </a>
+                <a
+                    class="contact-link"
+                    href="https://www.linkedin.com/in/amanda-mar/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Connect on LinkedIn <span class="link-star" aria-hidden="true">&#10022;</span>
+                </a>
+            </div>
+            <p class="closing-signoff">Built beneath the Vancouver night sky.</p>
+        </section>
         </main>
+        <span class="foreground-star foreground-star-one" aria-hidden="true"></span>
+        <span class="foreground-star foreground-star-two" aria-hidden="true"></span>
+    </div>
+
+    <div
+        *ngIf="selectedProject as project"
+        class="project-modal-backdrop"
+        role="presentation"
+        (click)="closeProject()">
+        <article
+            class="project-modal"
+            role="dialog"
+            aria-modal="true"
+            [attr.aria-labelledby]="'project-modal-title-' + project.id"
+            (click)="$event.stopPropagation()">
+            <button
+                type="button"
+                class="project-modal-close"
+                aria-label="Close project details"
+                (click)="closeProject()">
+                &times;
+            </button>
+
+            <img
+                *ngIf="project.image"
+                [src]="'assets/images/' + project.image"
+                [alt]="'Preview of ' + project.title">
+
+            <div class="project-modal-content">
+                <p class="project-category" *ngIf="project.category">{{ project.category.name }}</p>
+                <h2 [id]="'project-modal-title-' + project.id">{{ project.title }}</h2>
+
+                <div class="project-modal-tags" *ngIf="project.tags.length">
+                    <span *ngFor="let tag of project.tags">{{ tag.name }}</span>
+                </div>
+
+                <div class="project-modal-body" [innerHTML]="project.body"></div>
+
+                <a
+                    *ngIf="project.url"
+                    class="project-modal-link"
+                    [href]="project.url"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Visit live project <span class="link-star" aria-hidden="true">&#10022;</span>
+                </a>
+            </div>
+        </article>
     </div>
 </div>

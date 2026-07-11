@@ -67,16 +67,25 @@ export class AppComponent implements OnDestroy {
   private updateNavigation(): void {
     this.headerScrolled = window.scrollY > 48;
 
-    const sections = ['projects', 'technology', 'about'];
+    const sections = ['contact', 'about', 'projects', 'technology', 'experience'];
     const marker = window.innerHeight * 0.35;
-    this.activeSection = 'home';
+    let visibleSection = 'home';
 
     for (const id of sections) {
       const section = document.getElementById(id);
 
       if (section && section.getBoundingClientRect().top <= marker) {
-        this.activeSection = id;
+        visibleSection = id;
         break;
+      }
+    }
+
+    if (this.activeSection !== visibleSection) {
+      this.activeSection = visibleSection;
+
+      const nextHash = `#${visibleSection}`;
+      if (window.location.hash !== nextHash) {
+        window.history.replaceState(null, '', nextHash);
       }
     }
   }

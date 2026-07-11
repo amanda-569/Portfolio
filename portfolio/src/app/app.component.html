@@ -1,3 +1,5 @@
+<a class="skip-link" href="#experience">Skip to professional experience</a>
+
 <header [class.scrolled]="headerScrolled" [class.menu-open]="menuOpen">
   <nav aria-label="Primary navigation">
     <a class="brand" href="#home" (click)="scrollToSection($event, 'home')">
@@ -19,9 +21,9 @@
     <ul id="primary-links" [class.open]="menuOpen">
       <li>
         <a
-          href="#about"
-          [class.active]="activeSection === 'about'"
-          (click)="scrollToSection($event, 'about')">About</a>
+          href="#experience"
+          [class.active]="activeSection === 'experience'"
+          (click)="scrollToSection($event, 'experience')">Experience</a>
       </li>
       <li>
         <a
@@ -34,6 +36,12 @@
           href="#projects"
           [class.active]="activeSection === 'projects'"
           (click)="scrollToSection($event, 'projects')">Projects</a>
+      </li>
+      <li>
+        <a
+          href="#about"
+          [class.active]="activeSection === 'about'"
+          (click)="scrollToSection($event, 'about')">About</a>
       </li>
     </ul>
   </nav>
@@ -54,9 +62,11 @@
     </a>
   </div>
   <div class="page-links">
-    <a href="#about" (click)="scrollToSection($event, 'about')">About</a>
+    <a href="#experience" (click)="scrollToSection($event, 'experience')">Experience</a>
     <a href="#technology" (click)="scrollToSection($event, 'technology')">Skills</a>
     <a href="#projects" (click)="scrollToSection($event, 'projects')">Projects</a>
+    <a href="#about" (click)="scrollToSection($event, 'about')">About</a>
+    <a href="#contact" (click)="scrollToSection($event, 'contact')">Contact</a>
   </div>
   <p>&copy; {{ date.getFullYear() }} {{ author }}</p>
 </footer>
