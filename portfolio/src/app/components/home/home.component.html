@@ -218,8 +218,8 @@
                                 *ngIf="project.url"
                                 class="project-link"
                                 [href]="project.url"
-                                target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer"
+                                (click)="openProjectLink($event, project.url)">
                                 Visit project <span class="link-star" aria-hidden="true">&#10022;</span>
                             </a>
                         </div>
@@ -307,8 +307,8 @@
                     *ngIf="project.url"
                     class="project-modal-link"
                     [href]="project.url"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                    (click)="openProjectLink($event, project.url)">
                     Visit live project <span class="link-star" aria-hidden="true">&#10022;</span>
                 </a>
             </div>
