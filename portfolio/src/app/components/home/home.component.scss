@@ -479,9 +479,22 @@ button:focus-visible .link-star {
     transparent 82%
   );
   content: '';
-  inset: -5rem -6rem;
+  filter: blur(18px);
+  inset: -7rem -9rem;
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    rgba(0, 0, 0, 0.92) 48%,
+    transparent 78%
+  );
   pointer-events: none;
   position: absolute;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    rgba(0, 0, 0, 0.92) 48%,
+    transparent 78%
+  );
   z-index: -1;
 }
 
@@ -515,9 +528,22 @@ button:focus-visible .link-star {
     transparent 90%
   );
   content: '';
-  inset: -5rem -10rem;
+  filter: blur(22px);
+  inset: -7rem -12rem;
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    rgba(0, 0, 0, 0.95) 50%,
+    transparent 80%
+  );
   pointer-events: none;
   position: absolute;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    rgba(0, 0, 0, 0.95) 50%,
+    transparent 80%
+  );
   z-index: -1;
 }
 
@@ -627,9 +653,22 @@ button:focus-visible .link-star {
     transparent 72%
   );
   content: '';
-  inset: -8rem -10rem;
+  filter: blur(20px);
+  inset: -10rem -12rem;
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    rgba(0, 0, 0, 0.9) 46%,
+    transparent 76%
+  );
   pointer-events: none;
   position: absolute;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 0%,
+    rgba(0, 0, 0, 0.9) 46%,
+    transparent 76%
+  );
 }
 
 .contact-section h1 {
@@ -1407,12 +1446,12 @@ button:focus-visible .link-star {
   }
 
   .about-section::before {
-    inset: -4rem -2.5rem;
+    inset: -5rem -3.5rem;
   }
 
   .technology-section::before,
   .projects-section::before {
-    inset: -3rem -1.5rem;
+    inset: -4.5rem -2.5rem;
   }
 
   .shooting-star {
