@@ -83,6 +83,70 @@
   width: 100% !important;
 }
 
+@property --radiant-reveal {
+  inherits: false;
+  initial-value: 0%;
+  syntax: '<percentage>';
+}
+
+.radiant-star-field {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.radiant-star-field-content {
+  z-index: 0;
+}
+
+.radiant-star {
+  --radiant-reveal: 0%;
+  animation: radiant-star-reveal var(--radiant-duration) ease-in-out
+    var(--radiant-delay) infinite;
+  background: #f4f7ff;
+  clip-path: polygon(
+    50% 0%, 53% 43%, 68% 31%, 57% 46%,
+    100% 50%, 57% 54%, 68% 69%, 53% 57%,
+    50% 100%, 47% 57%, 32% 69%, 43% 54%,
+    0% 50%, 43% 46%, 32% 31%, 47% 43%
+  );
+  filter: drop-shadow(0 0 0.3rem rgba(197, 218, 255, 0.95));
+  height: var(--radiant-size);
+  mask-image: radial-gradient(
+    circle,
+    #000 0 var(--radiant-reveal),
+    transparent calc(var(--radiant-reveal) + 8%)
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    #000 0 var(--radiant-reveal),
+    transparent calc(var(--radiant-reveal) + 8%)
+  );
+  opacity: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: var(--radiant-size);
+}
+
+@keyframes radiant-star-reveal {
+  0%, 12% {
+    --radiant-reveal: 0%;
+    opacity: 0;
+  }
+
+  42%, 64% {
+    --radiant-reveal: 100%;
+    opacity: 0.95;
+  }
+
+  100% {
+    --radiant-reveal: 0%;
+    opacity: 0;
+  }
+}
+
 .shooting-star {
   --shoot-angle: -19deg;
   --shoot-duration: 1150ms;
@@ -1439,6 +1503,12 @@ button:focus-visible .link-star {
 
   .shooting-star {
     display: none;
+  }
+
+  .radiant-star {
+    --radiant-reveal: 100%;
+    animation: none;
+    opacity: 0.78;
   }
 
   .mountain-haze,
