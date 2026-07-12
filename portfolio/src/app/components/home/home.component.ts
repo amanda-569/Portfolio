@@ -69,6 +69,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private welcomeLayer?: HTMLElement;
   private identityLayer?: HTMLElement;
   private projectTrigger?: HTMLElement;
+  private shootingStarTimer?: ReturnType<typeof setTimeout>;
+  private shootingStars: HTMLElement[] = [];
   private pointerHandlers: Array<{
     element: HTMLElement;
     handler: (event: PointerEvent) => void;
@@ -190,10 +192,65 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.heroCopy = root.querySelector<HTMLElement>('.hero-copy') ?? undefined;
     this.welcomeLayer = root.querySelector<HTMLElement>('.hero-welcome') ?? undefined;
     this.identityLayer = root.querySelector<HTMLElement>('.hero-identity') ?? undefined;
+    this.shootingStars = Array.from(root.querySelectorAll<HTMLElement>('.shooting-star'));
 
     this.setupRevealObserver(root);
     this.setupSectionLighting(root);
+    this.scheduleShootingStar(true);
     this.updateParallax();
+  }
+
+  private scheduleShootingStar(firstAppearance = false): void {
+    if (this.reduceMotion || document.hidden) {
+      return;
+    }
+
+    window.clearTimeout(this.shootingStarTimer);
+    const minimumDelay = firstAppearance ? 4500 : 14000;
+    const delayRange = firstAppearance ? 5000 : 18000;
+
+    this.shootingStarTimer = window.setTimeout(() => {
+      this.launchShootingStar();
+      this.scheduleShootingStar();
+    }, minimumDelay + Math.random() * delayRange);
+  }
+
+  private launchShootingStar(): void {
+    const inHero = window.scrollY < window.innerHeight * 0.72;
+    const star = this.shootingStars.find(element =>
+      element.classList.contains(inHero ? 'shooting-star-hero' : 'shooting-star-content')
+    );
+
+    if (!star) {
+      return;
+    }
+
+    const top = 8 + Math.random() * 48;
+    const left = 2 + Math.random() * 28;
+    const angle = -24 + Math.random() * 14;
+    const travelX = 42 + Math.random() * 28;
+    const travelY = 8 + Math.random() * 12;
+    const duration = 900 + Math.random() * 500;
+
+    star.style.setProperty('--shoot-top', `${top}%`);
+    star.style.setProperty('--shoot-left', `${left}%`);
+    star.style.setProperty('--shoot-angle', `${angle.toFixed(1)}deg`);
+    star.style.setProperty('--shoot-x', `${travelX.toFixed(1)}vw`);
+    star.style.setProperty('--shoot-y', `${travelY.toFixed(1)}vw`);
+    star.style.setProperty('--shoot-duration', `${duration.toFixed(0)}ms`);
+    star.classList.remove('is-active');
+    void star.offsetWidth;
+    star.classList.add('is-active');
+  }
+
+  @HostListener('document:visibilitychange')
+  onVisibilityChange(): void {
+    if (document.hidden) {
+      window.clearTimeout(this.shootingStarTimer);
+      return;
+    }
+
+    this.scheduleShootingStar(true);
   }
 
   private setupRevealObserver(root: HTMLElement): void {
@@ -413,6 +470,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     document.body.style.overflow = '';
+    window.clearTimeout(this.shootingStarTimer);
     this.revealObserver?.disconnect();
     this.pointerHandlers.forEach(({ element, handler }) => {
       element.removeEventListener('pointermove', handler);
