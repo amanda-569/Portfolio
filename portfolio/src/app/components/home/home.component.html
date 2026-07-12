@@ -7,6 +7,17 @@
             class="constellation"
             [options]="starOptions">
         </ngx-particles>
+        <div class="radiant-star-field radiant-star-field-hero" aria-hidden="true">
+            <span
+                *ngFor="let star of heroRadiantStars"
+                class="radiant-star"
+                [style.left.%]="star[0]"
+                [style.top.%]="star[1]"
+                [style.--radiant-size.rem]="star[2]"
+                [style.--radiant-delay.s]="star[3]"
+                [style.--radiant-duration.s]="star[4]">
+            </span>
+        </div>
         <span class="shooting-star shooting-star-hero" aria-hidden="true"></span>
         <div class="mountain-haze" aria-hidden="true"></div>
         <img src="../../../assets/images/moon.png" alt="" id="moon">
@@ -42,6 +53,17 @@
             class="constellation2"
             [options]="contentStarOptions">
         </ngx-particles>
+        <div class="radiant-star-field radiant-star-field-content" aria-hidden="true">
+            <span
+                *ngFor="let star of contentRadiantStars"
+                class="radiant-star"
+                [style.left.%]="star[0]"
+                [style.top.%]="star[1]"
+                [style.--radiant-size.rem]="star[2]"
+                [style.--radiant-delay.s]="star[3]"
+                [style.--radiant-duration.s]="star[4]">
+            </span>
+        </div>
         <span class="shooting-star shooting-star-content" aria-hidden="true"></span>
 
         <main class="overlay-content">

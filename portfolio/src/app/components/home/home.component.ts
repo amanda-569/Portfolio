@@ -22,6 +22,24 @@ import type { Project } from '../../models/project';
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly projects = PROJECTS;
+  readonly heroRadiantStars = [
+    [11, 16, 1.15, -1.4, 5.8], [27, 34, 0.8, -3.9, 6.6],
+    [43, 13, 0.95, -2.2, 7.1], [61, 28, 1.25, -5.1, 6.2],
+    [77, 17, 0.75, -0.8, 5.5], [89, 39, 1.05, -4.5, 7.4],
+  ];
+  readonly contentRadiantStars = [
+    [8, 3, 0.8, -1.2, 6.4], [31, 5, 1.05, -4.7, 7.2],
+    [67, 4, 0.75, -2.8, 5.9], [91, 7, 1.2, -5.4, 7.8],
+    [15, 14, 1.1, -3.1, 6.8], [48, 16, 0.7, -0.5, 5.7],
+    [79, 19, 0.9, -4.2, 7.5], [5, 28, 0.75, -2.5, 6.1],
+    [37, 31, 1.25, -5.8, 7.9], [70, 34, 0.8, -1.7, 6.6],
+    [94, 38, 1.05, -3.6, 7.1], [20, 46, 0.9, -4.9, 7.6],
+    [56, 49, 0.75, -0.9, 5.8], [84, 53, 1.15, -2.9, 6.9],
+    [9, 62, 1.05, -5.2, 7.3], [43, 66, 0.8, -1.9, 6.2],
+    [73, 71, 1.2, -4.1, 7.7], [95, 76, 0.75, -0.3, 5.6],
+    [25, 83, 0.9, -3.4, 6.7], [59, 88, 1.1, -5.6, 7.4],
+    [87, 94, 0.8, -2.1, 6.0],
+  ];
   selectedProject: Project | null = null;
   readonly skillGroups = [
     {
@@ -71,6 +89,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private projectTrigger?: HTMLElement;
   private shootingStarTimer?: ReturnType<typeof setTimeout>;
   private shootingStars: HTMLElement[] = [];
+  private shootingStarLaunched = false;
   private pointerHandlers: Array<{
     element: HTMLElement;
     handler: (event: PointerEvent) => void;
@@ -129,18 +148,66 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           size: {
             value: this.compactSky
-              ? { min: 0.85, max: 1.45 }
-              : { min: 0.65, max: 1.25 },
+              ? { min: 0.25, max: 1.45 }
+              : { min: 0.2, max: 1.25 },
+            animation: {
+              enable: !this.reduceMotion,
+              speed: { min: 0.45, max: 0.85 },
+              mode: 'auto',
+              startValue: 'random',
+              sync: false,
+            },
           },
           rotate: {
             value: 45,
             animation: { enable: false },
           },
           opacity: {
-            value: { min: 0.28, max: 1 },
+            value: { min: 0.68, max: 1 },
             animation: {
               enable: !this.reduceMotion,
-              speed: { min: 0.6, max: 1.6 },
+              speed: { min: 0.2, max: 0.5 },
+              mode: 'auto',
+              startValue: 'random',
+              sync: false,
+            },
+          },
+        },
+        radiant: {
+          number: { value: this.compactSky ? 5 : 8 },
+          shape: {
+            type: 'image',
+            options: {
+              image: {
+                name: 'eight-point-radiant-star',
+                src: 'assets/images/eight-point-star.svg',
+                width: 100,
+                height: 100,
+                replaceColor: false,
+              },
+            },
+          },
+          size: {
+            value: this.compactSky
+              ? { min: 0.5, max: 4 }
+              : { min: 0.65, max: 4.8 },
+            animation: {
+              enable: !this.reduceMotion,
+              speed: { min: 0.35, max: 0.7 },
+              mode: 'auto',
+              startValue: 'random',
+              sync: false,
+            },
+          },
+          rotate: {
+            value: 0,
+            animation: { enable: false },
+          },
+          opacity: {
+            value: { min: 0.82, max: 1 },
+            animation: {
+              enable: !this.reduceMotion,
+              speed: { min: 0.18, max: 0.42 },
               mode: 'auto',
               startValue: 'random',
               sync: false,
@@ -163,8 +230,31 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           number: { value: this.compactSky ? 48 : 110 },
           size: {
             value: this.compactSky
-              ? { min: 1.05, max: 1.85 }
-              : { min: 0.9, max: 1.8 },
+              ? { min: 0.3, max: 1.85 }
+              : { min: 0.25, max: 1.8 },
+            animation: {
+              enable: !this.reduceMotion,
+              speed: { min: 0.45, max: 0.85 },
+              mode: 'auto',
+              startValue: 'random',
+              sync: false,
+            },
+          },
+        },
+        radiant: {
+          ...this.starOptions.particles?.groups?.['radiant'],
+          number: { value: this.compactSky ? 12 : 22 },
+          size: {
+            value: this.compactSky
+              ? { min: 0.55, max: 4.4 }
+              : { min: 0.7, max: 5.2 },
+            animation: {
+              enable: !this.reduceMotion,
+              speed: { min: 0.35, max: 0.7 },
+              mode: 'auto',
+              startValue: 'random',
+              sync: false,
+            },
           },
         },
       },
@@ -201,7 +291,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private scheduleShootingStar(firstAppearance = false): void {
-    if (this.reduceMotion || document.hidden) {
+    if (this.reduceMotion || document.hidden || this.shootingStarLaunched) {
       return;
     }
 
@@ -211,7 +301,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.shootingStarTimer = window.setTimeout(() => {
       this.launchShootingStar();
-      this.scheduleShootingStar();
     }, minimumDelay + Math.random() * delayRange);
   }
 
@@ -224,6 +313,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!star) {
       return;
     }
+
+    this.shootingStarLaunched = true;
 
     const top = 8 + Math.random() * 48;
     const left = 2 + Math.random() * 28;
@@ -250,7 +341,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    this.scheduleShootingStar(true);
+    if (!this.shootingStarLaunched) {
+      this.scheduleShootingStar(true);
+    }
   }
 
   private setupRevealObserver(root: HTMLElement): void {
