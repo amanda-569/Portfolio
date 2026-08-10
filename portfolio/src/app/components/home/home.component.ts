@@ -21,7 +21,8 @@ import type { Project } from '../../models/project';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  readonly projects = PROJECTS;
+  readonly featuredProject = PROJECTS[0];
+  readonly projects = PROJECTS.slice(1);
   readonly heroRadiantStars = [
     [11, 16, 1.15, -1.4, 5.8], [27, 34, 0.8, -3.9, 6.6],
     [43, 13, 0.95, -2.2, 7.1], [61, 28, 1.25, -5.1, 6.2],
@@ -71,7 +72,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'The tools I use to design, build, collaborate, and ship.',
       accent: '255, 220, 160',
       constellation: 'Andromeda',
-      skills: ['Git / GitHub', 'Figma', 'AWS', 'Android Studio', 'C'],
+      skills: ['Git / GitHub', 'Figma', 'AWS', 'Vercel', 'OpenAPI', 'Android Studio', 'C'],
     },
   ];
   readonly restingCardTransform =
