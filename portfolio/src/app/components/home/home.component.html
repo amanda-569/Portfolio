@@ -199,11 +199,48 @@
         </section>
 
         <section id="projects" class="hidden-home projects-section">
-            <p class="section-eyebrow">Foundational work</p>
-            <h1>Earlier Projects</h1>
+            <p class="section-eyebrow">Selected work</p>
+            <h1>Projects</h1>
             <p class="projects-intro">
-                A selection of projects from my training that established my full-stack foundation.
+                Systems built to solve real problems, with reliability considered from the first request to the final action.
             </p>
+
+            <article class="featured-project">
+                <div class="featured-project-visual">
+                    <picture>
+                        <source media="(max-width: 700px)" srcset="assets/images/Garmin_AI_Coach_Architecture_Mobile.svg">
+                        <img
+                            [src]="'assets/images/' + featuredProject.image"
+                            [alt]="'Architecture of ' + featuredProject.title"
+                            loading="lazy"
+                            width="1200"
+                            height="760">
+                    </picture>
+                </div>
+                <div class="featured-project-content">
+                    <p class="project-category">{{ featuredProject.category?.name }}</p>
+                    <h2>{{ featuredProject.title }}</h2>
+                    <p>{{ featuredProject.excerpt }}</p>
+                    <div class="featured-project-flow" aria-label="Workout publishing flow">
+                        <span>Analyze</span><i aria-hidden="true">→</i>
+                        <span>Validate</span><i aria-hidden="true">→</i>
+                        <span>Approve</span><i aria-hidden="true">→</i>
+                        <span>Sync</span>
+                    </div>
+                    <div class="project-tags">
+                        <span *ngFor="let tag of featuredProject.tags">{{ tag.name }}</span>
+                    </div>
+                    <button type="button" class="project-details-button" (click)="openProject(featuredProject, $event)">
+                        Explore the build <span class="link-star" aria-hidden="true">&#10022;</span>
+                    </button>
+                </div>
+            </article>
+
+            <div class="earlier-projects-heading">
+                <p class="section-eyebrow">Foundational work</p>
+                <h2>Earlier Projects</h2>
+                <p>A selection of projects from my training that established my full-stack foundation.</p>
+            </div>
 
             <div class="projects-grid">
                 <article
@@ -311,8 +348,13 @@
                 &times;
             </button>
 
+            <picture *ngIf="project.slug === 'garmin-ai-running-coach'" class="project-modal-visual">
+                <source media="(max-width: 700px)" srcset="assets/images/Garmin_AI_Coach_Architecture_Mobile.svg">
+                <img src="assets/images/Garmin_AI_Coach_Architecture.svg" [alt]="'Architecture of ' + project.title">
+            </picture>
+
             <img
-                *ngIf="project.image"
+                *ngIf="project.image && project.slug !== 'garmin-ai-running-coach'"
                 [src]="'assets/images/' + project.image"
                 [alt]="'Preview of ' + project.title">
 

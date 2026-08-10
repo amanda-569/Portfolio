@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 900" role="img" aria-labelledby="title desc">
+  <title id="title">Garmin AI Running Coach closed loop</title>
+  <desc id="desc">Garmin watch data is analyzed by a private API and AI coach. Validated workouts return to the Garmin calendar and watch, beginning the cycle again.</desc>
+  <defs>
+    <linearGradient id="p" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#173e76"/><stop offset="1" stop-color="#091a39"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#443b83"/><stop offset="1" stop-color="#161d48"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#78d9cb"/></marker>
+  </defs>
+  <rect width="480" height="900" rx="28" fill="#071329"/>
+  <g font-family="Arial,sans-serif">
+    <text x="30" y="44" fill="#91b7ed" font-size="14" letter-spacing="3">THE TRAINING LOOP</text>
+    <text x="30" y="68" fill="#718fb9" font-size="12">Train · learn · adapt · repeat</text>
+    <path d="M240 141V758" stroke="#4b82b9" stroke-width="3"/>
+    <path d="M240 758C410 758 422 125 314 125" fill="none" stroke="#72d9c8" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <g transform="translate(70 94)"><rect width="340" height="94" rx="20" fill="url(#p)" stroke="#72afea"/><text x="24" y="38" fill="#fff" font-size="20" font-weight="600">1 · Garmin Watch</text><text x="24" y="65" fill="#afd0f3" font-size="13">Complete the scheduled runs</text></g>
+    <path d="M240 188v34" stroke="#82b4ff" stroke-width="3" marker-end="url(#arrow)"/>
+    <g transform="translate(70 226)"><rect width="340" height="105" rx="20" fill="url(#p)" stroke="#6b9ddd"/><text x="24" y="37" fill="#fff" font-size="20" font-weight="600">2 · Garmin Data</text><text x="24" y="64" fill="#afd0f3" font-size="13">Runs · sleep · HRV · stress</text><text x="24" y="85" fill="#afd0f3" font-size="12">Other activities · readiness · cycle</text></g>
+    <path d="M240 331v34" stroke="#82b4ff" stroke-width="3" marker-end="url(#arrow)"/>
+    <g transform="translate(70 369)"><rect width="340" height="94" rx="20" fill="url(#p)" stroke="#73c2cf"/><text x="24" y="38" fill="#fff" font-size="20" font-weight="600">3 · Private API</text><text x="24" y="65" fill="#b7dce8" font-size="13">Retrieve · normalize · calculate</text></g>
+    <path d="M240 463v34" stroke="#8d9eff" stroke-width="3" marker-end="url(#arrow)"/>
+    <g transform="translate(70 501)"><rect width="340" height="94" rx="20" fill="url(#a)" stroke="#9a8ceb"/><text x="24" y="38" fill="#fff" font-size="20" font-weight="600">4 · Ask the AI Coach</text><text x="24" y="65" fill="#c9c0eb" font-size="13">It calls the API and retrieves your data</text></g>
+    <path d="M240 595v34" stroke="#79d6ca" stroke-width="3" marker-end="url(#arrow)"/>
+    <g transform="translate(70 633)"><rect width="340" height="94" rx="20" fill="url(#p)" stroke="#70d6c4"/><text x="24" y="38" fill="#fff" font-size="20" font-weight="600">5 · Validated Workout</text><text x="24" y="65" fill="#b5e7de" font-size="13">Validate · preview · approve</text></g>
+    <path d="M240 727v34" stroke="#79d6ca" stroke-width="3" marker-end="url(#arrow)"/>
+    <g transform="translate(70 765)"><rect width="340" height="94" rx="20" fill="url(#p)" stroke="#70b8d9"/><text x="24" y="34" fill="#fff" font-size="20" font-weight="600">6 · Garmin Calendar</text><text x="24" y="59" fill="#b4d8ea" font-size="12">Schedule and sync back to watch</text><text x="24" y="79" fill="#9fd9eb" font-size="11">Pace + heart-rate targets</text></g>
+  </g>
+</svg>

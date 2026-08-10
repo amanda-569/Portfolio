@@ -1071,6 +1071,92 @@ button:focus-visible .link-star {
   width: 100%;
 }
 
+.featured-project {
+  background: linear-gradient(135deg, rgba(30, 72, 132, 0.64), rgba(7, 17, 47, 0.88));
+  border: 1px solid rgba(208, 230, 255, 0.38);
+  border-radius: 1.5rem;
+  box-shadow: 0 2.25rem 6rem rgba(0, 0, 0, 0.3), inset 0 1px rgba(255, 255, 255, 0.22);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+  margin-bottom: clamp(4rem, 8vw, 6.5rem);
+  overflow: hidden;
+  position: relative;
+}
+
+.featured-project-visual {
+  align-items: center;
+  background: radial-gradient(circle at 50% 45%, rgba(91, 163, 232, 0.18), transparent 62%);
+  display: flex;
+  min-height: 28rem;
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+.featured-project-visual picture,
+.featured-project-visual img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.featured-project-content {
+  align-self: center;
+  padding: clamp(2rem, 4vw, 3.5rem);
+}
+
+.featured-project-content h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.featured-project-content > p:not(.project-category) {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+  text-align: left;
+  text-indent: 0;
+}
+
+.featured-project-flow {
+  align-items: center;
+  color: #dce7ff;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  gap: 0.45rem;
+  letter-spacing: 0.06em;
+  margin: 1.5rem 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.featured-project-flow i {
+  color: rgba(170, 205, 255, 0.55);
+  font-style: normal;
+}
+
+.featured-project-content .project-tags {
+  margin-top: 1rem;
+}
+
+.earlier-projects-heading {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.earlier-projects-heading h2 {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.earlier-projects-heading > p:last-child {
+  color: rgba(255, 255, 255, 0.68);
+  text-align: center;
+  text-indent: 0;
+}
+
 .home-project-card {
   --glass-x: 50%;
   --glass-y: 35%;
@@ -1336,24 +1422,28 @@ button:focus-visible .link-star {
     inset 0 2px 1px rgba(255, 255, 255, 0.32),
     inset 0 -2px 2px rgba(70, 127, 219, 0.24);
   color: white;
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+  display: block;
   max-height: min(84vh, 760px);
-  max-width: 1050px;
+  max-width: 980px;
   overflow: auto;
   position: relative;
   width: 100%;
 }
 
-.project-modal > img {
-  height: 100%;
-  min-height: 100%;
-  object-fit: cover;
+.project-modal > img,
+.project-modal-visual,
+.project-modal-visual img {
+  background: #071329;
+  display: block;
+  height: auto;
+  object-fit: contain;
   width: 100%;
 }
 
 .project-modal-content {
-  padding: clamp(2rem, 4vw, 3.5rem);
+  margin: 0 auto;
+  max-width: 780px;
+  padding: clamp(2.25rem, 5vw, 4rem);
   text-align: left;
 }
 
@@ -1390,6 +1480,74 @@ button:focus-visible .link-star {
   margin-bottom: 1rem;
 }
 
+.project-modal-body ::ng-deep .project-modal-lead {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+.project-modal-body ::ng-deep .project-modal-callout {
+  background: linear-gradient(135deg, rgba(107, 170, 255, 0.13), rgba(105, 220, 202, 0.08));
+  border-left: 3px solid #79d8ca;
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.1rem;
+}
+
+.project-modal-body ::ng-deep .project-modal-callout strong {
+  color: white;
+}
+
+.project-modal-body ::ng-deep .project-principles {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.25rem 0 2rem;
+}
+
+.project-modal-body ::ng-deep .project-principles p {
+  background: rgba(220, 231, 255, 0.07);
+  border: 1px solid rgba(220, 231, 255, 0.13);
+  border-radius: 0.8rem;
+  margin: 0;
+  padding: 1rem 1.1rem;
+}
+
+.project-modal-body ::ng-deep .project-principles strong,
+.project-modal-body ::ng-deep .project-principles span {
+  display: block;
+}
+
+.project-modal-body ::ng-deep .project-principles strong {
+  color: #f4f7ff;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.project-modal-body ::ng-deep .project-principles span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.project-modal-body ::ng-deep h3 {
+  color: #f4f7ff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1.4rem 0 0.45rem;
+}
+
+.project-modal-body ::ng-deep code {
+  background: rgba(220, 231, 255, 0.1);
+  border: 1px solid rgba(220, 231, 255, 0.14);
+  border-radius: 0.3rem;
+  color: #dce7ff;
+  font-size: 0.85em;
+  padding: 0.12rem 0.35rem;
+}
+
 .project-modal-link {
   border-bottom: 1px solid rgba(255, 244, 220, 0.55);
   color: #fff4dc;
@@ -1421,6 +1579,18 @@ button:focus-visible .link-star {
 }
 
 @media screen and (max-width: 900px) {
+  .featured-project {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .featured-project-visual {
+    min-height: 0;
+  }
+
+  .project-modal {
+    max-width: 720px;
+  }
+
   .technology-grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1508,10 +1678,16 @@ button:focus-visible .link-star {
     max-height: 88vh;
   }
 
-  .project-modal > img {
-    aspect-ratio: 16 / 9;
+  .project-modal > img,
+  .project-modal-visual img {
+    aspect-ratio: auto;
     height: auto;
     min-height: 0;
+    padding: 0.75rem;
+  }
+
+  .featured-project-content {
+    padding: 1.5rem;
   }
 }
 

@@ -2,6 +2,79 @@ import { Project } from '../models/project';
 
 export const PROJECTS: Project[] = [
   {
+    "id": 6,
+    "title": "Garmin AI Running Coach",
+    "slug": "garmin-ai-running-coach",
+    "excerpt": "A closed-loop running coach I can actually talk to: one that understands the context behind my Garmin data and turns our conversations into approved, structured workouts on my watch.",
+    "body": `
+      <p class="project-modal-lead">
+        Many fitness apps give you a score or a prewritten insight. Even when AI is added, the feedback can still amount to, “You hit your target,” or, “You missed your target, but good work anyway!” I wanted a coach I could have a real conversation with: one I could question, challenge with new information, and ask to adjust my training. I built a closed-loop running coach that connects ChatGPT with my Garmin data. The same system that analyzes a completed run can use the rest of my training and recovery context to discuss why it happened, decide what should come next, and send the approved workout directly to my Garmin watch.
+      </p>
+
+      <p class="project-modal-callout">
+        <strong>I do not export files, copy statistics, or upload screenshots.</strong> I can simply ask ChatGPT, “Pull up Tuesday's interval workout,” and it calls my private API, retrieves the right Garmin records, and starts analyzing them.
+      </p>
+
+      <div class="project-principles">
+        <p>
+          <strong>Evidence before recommendations</strong>
+          <span>Strength and rehab recommendations are limited to a curated library built from peer-reviewed exercise guidance, rather than whatever exercise the model happens to recall.</span>
+        </p>
+        <p>
+          <strong>Injuries before generic advice</strong>
+          <span>My actual physiotherapy history, symptoms, aggravating movements, and prescribed stability work constrain what the coach can recommend.</span>
+        </p>
+        <p>
+          <strong>Completion is not the same as good execution</strong>
+          <span>The coach evaluates individual repetitions against their targets, looks for pacing fade, considers recent training load and recovery, and turns the result into constructive adjustments rather than automatically congratulating every completed workout.</span>
+        </p>
+      </div>
+
+      <h3>A real training decision</h3>
+      <p>
+        Imagine a quality session that falls apart after the second repetition. Instead of simply marking the workout complete or failed, the coach compares every repetition with its prescribed target and identifies the pacing fade. I can then ask whether a hike with 1,400 metres of elevation gain two days earlier may have mattered. It retrieves that activity alongside my sleep, HRV, recent training load, and recovery data, revises its interpretation if the evidence supports it, and recommends a proportionate adjustment to the rest of the week. If I approve the change, the replacement workout, including its exact pace or heart-rate targets, is scheduled directly to my Garmin watch.
+      </p>
+
+      <h3>Much more than uploading screenshots</h3>
+      <p>
+        A screenshot gives ChatGPT a frozen, incomplete picture. Through the conversation, the coach can retrieve the underlying laps, intervals, heart rate, cadence, sleep, stress, HRV, training readiness, menstrual-cycle context, and other recorded activities whenever they become relevant. I can ask why I struggled, request a comparison of every interval against its target, and then ask how the evidence should change the rest of my training week.
+      </p>
+
+      <h3>The AI explains; the software proves</h3>
+      <p>
+        The coach is not trusted to guess at the important math. The backend calculates completed repetitions, target ranges, pace deviations, first-to-last changes, and completion percentages. Missing values remain missing instead of being invented. Recovery, menstrual-cycle, and recent-activity data can suggest possible contributing factors, but the coach does not force an explanation when it may simply have been a bad run. It uses those verified facts and uncertainties to explain what happened and make proportionate changes to the training plan.
+      </p>
+
+      <h3>From a training plan to my wrist</h3>
+      <p>
+        The coach can design a full progression of easy runs, long runs, quality sessions, and recovery days around a goal, then revisit the plan as new Garmin data comes in. That makes it useful not only for completing workouts, but for athletes managing progression, fatigue, recovery, and performance across an entire training block. Each scheduled workout can include the exact pace or heart-rate targets we discussed. Before anything is sent to Garmin, I see a readable preview and choose whether to approve it. Once approved, the workouts are converted into Garmin's format, added to my calendar, and synced to my watch to guide each run.
+      </p>
+
+      <h3>Built so AI has fewer chances to be wrong</h3>
+      <p>
+        I did not rely on a prompt simply telling the model not to hallucinate. Typed data models restrict what it can submit, deterministic backend calculations handle facts that should not be left to an LLM, and curated evidence constrains exercise recommendations. Every approved workout is stored as an immutable draft, meaning the exact workout I preview is the one that gets uploaded. The AI cannot quietly alter it after approval. Duplicate uploads are prevented, and uncertain external writes stop safely instead of blindly retrying.
+      </p>
+    `,
+    "url": null,
+    "published_date": "2026-08-09",
+    "image": "Garmin_AI_Coach_Architecture.svg",
+    "thumb": null,
+    "category_id": 1,
+    "created_at": "2026-08-09T00:00:00.000000Z",
+    "updated_at": "2026-08-09T00:00:00.000000Z",
+    "category": { "id": 1, "slug": "full-stack", "name": "AI Integration · Backend" },
+    "tags": [
+      { "id": 8, "name": "Python", "slug": "python", "pivot": { "projects_id": 6, "tags_id": 8 } },
+      { "id": 9, "name": "FastAPI", "slug": "fastapi", "pivot": { "projects_id": 6, "tags_id": 9 } },
+      { "id": 10, "name": "Pydantic", "slug": "pydantic", "pivot": { "projects_id": 6, "tags_id": 10 } },
+      { "id": 11, "name": "Garmin Connect", "slug": "garmin-connect", "pivot": { "projects_id": 6, "tags_id": 11 } },
+      { "id": 12, "name": "OpenAPI", "slug": "openapi", "pivot": { "projects_id": 6, "tags_id": 12 } },
+      { "id": 13, "name": "GPT Actions", "slug": "gpt-actions", "pivot": { "projects_id": 6, "tags_id": 13 } },
+      { "id": 14, "name": "Vercel", "slug": "vercel", "pivot": { "projects_id": 6, "tags_id": 14 } },
+      { "id": 15, "name": "Vercel Blob", "slug": "vercel-blob", "pivot": { "projects_id": 6, "tags_id": 15 } }
+    ]
+  },
+  {
     "id": 1,
     "title": "React Redux Movie Site",
     "slug": "react-redux-movie-site",
